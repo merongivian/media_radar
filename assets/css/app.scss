@@ -1,0 +1,146 @@
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+
+@font-face {
+  font-family: 'screenMatrix';
+  src: font-url('ScreenMatrix.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DJBGetDigital';
+  src: font-url('DJBGetDigital.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$familyScreenMatrix: "screenMatrix";
+$family-primary: $familyScreenMatrix, $family-sans-serif;
+
+$primary: #5AB9EA;
+//set $primary-invert
+$link: #5680E9;
+$light: #D0E0F1;
+//set $link-invert
+
+@import 'bulma/bulma';
+
+//@import 'font-awesome';
+//@import 'hover.css/scss/hover';
+
+$playerHeight: 90px;
+$containerMargin: 52px;
+
+nav .navbar-brand h1 {
+  font-family: 'DJBGetDigital', $family-sans-serif;
+}
+
+nav {
+  position: fixed !important;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+#main.container {
+  $subtitleMargin: $containerMargin / 2;
+
+  padding-top: $containerMargin + $subtitleMargin;
+  padding-bottom: $containerMargin;
+
+  h2 {
+    font-size: 21px;
+    margin-bottom: $subtitleMargin;
+    font-weight: bold;
+  }
+}
+
+.blog {
+  .tile.is-child {
+    padding-left: 40px;
+  }
+
+  .title-link a {
+    text-decoration: none;
+  }
+
+  .title {
+    color: #304F4E;
+
+    &:hover {
+      color: $link;
+    }
+  }
+}
+
+.song-card .fa {
+  cursor: pointer;
+  color: #304F4E;
+}
+
+.vertical-aligned {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#player {
+ $elementsPadding: 12px;
+
+ position: fixed;
+ left: 0;
+ bottom: -$playerHeight;
+ width: 100%;
+ height: $playerHeight;
+ background-color: $primary;
+ color: white;
+ text-align: center;
+ display: table;
+ overflow: hidden;
+ transition: 1s bottom ease;
+ padding-left: 45px;
+ padding-right: 45px;
+
+ #song-loading {
+   // TODO: this is a hacky way to center this vertically
+   // without moving the centered elements to the right
+   position: absolute;
+   display: table-cell;
+   margin-top: $elementsPadding * 2;
+ }
+
+ p#song-title {
+   font-weight: bold;
+ }
+
+ p {
+   margin: $elementsPadding;
+ }
+
+ &.appear {
+   bottom: 0px;
+ }
+
+ .media-buttons {
+    margin-bottom: $elementsPadding + 2px;
+    i {
+      cursor: pointer;
+      padding-left: 14px;
+      padding-right: 14px;
+
+      &:hover {
+        color: $info;
+      }
+    }
+  }
+}
+
+#playem_video {
+  position: fixed;
+  bottom: $playerHeight;
+  right: 20px;
+
+  iframe {
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,18 @@
+<nav class="navbar is-primary" role="navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <h1 class="title">NanoIndie</h1>
+    </a>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        <strong>Nuevos Tracks</strong>
+      </a>
+      <a class="navbar-item" href="/">
+        <strong>Blogs Indexados</strong>
+      </a>
+    </div>
+  </div>
+</nav>

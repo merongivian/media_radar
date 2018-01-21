@@ -1,0 +1,10 @@
+<div class="tile blog is-parent is-4">
+  <div class="tile is-child notification is-light">
+    <p class="title title-link"><%= @blog %></p>
+
+    <p class="subtitle">Ecuador</p>
+    <figure class="image">
+      <%= img_tag static_path(@conn, "/images/blog-default.jpg") %>
+    </figure>
+  </div>
+</div>
