@@ -7,12 +7,12 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
+      <%= link to: "/songs", class: "navbar-item" do %>
         <strong>Nuevos Tracks</strong>
-      </a>
-      <a class="navbar-item" href="/">
+      <% end %>
+      <%= link to: "/blogs", class: "navbar-item" do %>
         <strong>Blogs Indexados</strong>
-      </a>
+      <% end %>
     </div>
   </div>
 </nav>

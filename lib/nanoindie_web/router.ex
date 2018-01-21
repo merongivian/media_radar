@@ -16,9 +16,10 @@ defmodule NanoindieWeb.Router do
   scope "/", NanoindieWeb do
     pipe_through :browser # Use the default browser stack
 
-    get  "/", BlogController, :index
+    get  "/", SongController, :index
 
     resources "/blogs", BlogController, only: ~w(index)a
+    resources "/songs", SongController, only: ~w(index)a
   end
 
   # Other scopes may use custom stacks.

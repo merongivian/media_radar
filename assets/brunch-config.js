@@ -52,6 +52,10 @@ exports.config = {
       ignore: [/vendor|node_modules/]
     },
 
+    copycat: {
+      "fonts": ["node_modules/font-awesome/fonts"]
+    },
+
     sass: {
       options: {
         includePaths: [

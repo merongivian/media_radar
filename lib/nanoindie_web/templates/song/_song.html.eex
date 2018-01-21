@@ -1,0 +1,17 @@
+<div class="box song-card">
+  <article class="media">
+    <div class="media-left">
+      <i class="fa fa-play-circle fa-2x hvr-pop"></i>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <%= @song %>
+          <small class="is-pulled-right">Publicado hace 3 días, creado en <a href="/" target="_blank">Youtube</a></small>
+          <br>
+          <%= link "Muzikalia", to: "/" %>
+        </p>
+      </div>
+    </div>
+  </article>
+</div>
