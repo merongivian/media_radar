@@ -129,8 +129,8 @@ pure_crawling_music_blogs = [
   ["zona girante", "http://www.zonagirante.com/videos/", nil, "https://elpartidocriollo.com/sites/default/files/Amigos_Del_Partido_5.png", ".article article h2.title a"],
   ["rock chapin", "http://rockchapin.org/", "GT", "http://www.rockchapin.org/images/diseno/asdf.png", "h1.uk-article-title a"],
   ["musica chilena", "http://www.musicachilena.cl/v2/videos/", "CL", "http://www.musicachilena.cl/v2/wp-content/uploads/2017/08/logo_pink.png", "h3.qt-title a"],
-  ["radionica", "https://www.radionica.rocks/etiquetas/bandas-colombianas", "COL", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Se%C3%B1al_Radionica_logo.svg/1200px-Se%C3%B1al_Radionica_logo.svg.png", ".view-tags h2.title a"], #.actions a.at_titleonimage,
-  ["rockaxis", "http://rockaxis.com.co/colombia/entrevistas/indice", "COL", "https://4.bp.blogspot.com/-ez9ybkhX-zU/Vwl0e3mmN1I/AAAAAAAAEvg/0as9DzCyLbIX13hPp1ql9RyjYNf3ewilA/s640/rockaxis.png", ".field-items h2 a"],
+  ["radionica", "https://www.radionica.rocks/etiquetas/bandas-colombianas", "CO", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Se%C3%B1al_Radionica_logo.svg/1200px-Se%C3%B1al_Radionica_logo.svg.png", ".view-tags h2.title a"], #.actions a.at_titleonimage,
+  ["rockaxis", "http://rockaxis.com.co/colombia/entrevistas/indice", "CO", "https://4.bp.blogspot.com/-ez9ybkhX-zU/Vwl0e3mmN1I/AAAAAAAAEvg/0as9DzCyLbIX13hPp1ql9RyjYNf3ewilA/s640/rockaxis.png", ".field-items h2 a"],
   ["bang", "http://bangrevista.com/category/Musica", "BO", "http://www.bangrevista.com/images/logo.png", ".row.categorys a"],
   ["pardelion music", "http://pardelionmusic.tv/", "UY", "http://pardelionmusic.tv/wp-content/uploads/2014/07/pmtvlogo.png", "h2.entry-title a"],
   ["soy rock", "http://revistasoyrock.com.ar/discos/", "AR", "https://pbs.twimg.com/profile_images/908640665734696961/zxxVHI2K_400x400.jpg", ".grid-item a"],
@@ -142,9 +142,7 @@ pure_crawling_music_blogs = [
 alias Nanoindie.{Blog, Repo}
 
 insert_or_update_blog = fn(params) ->
-  feed_url = Map.get(params, :feed_url)
-
-  case Repo.get_by(Blog, feed_url: feed_url) do
+  case Repo.get_by(Blog, feed_url: params[:feed_url]) do
     nil -> %Blog{}
     blog -> blog
   end
