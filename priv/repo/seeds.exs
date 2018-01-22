@@ -150,14 +150,13 @@ insert_or_update_blog = fn(params) ->
   |> Repo.insert_or_update!
 end
 
-Enum.each rss_music_blogs, fn(blog_data) ->
-  [name, feed_url, country, logo_url] = blog_data
+blogs = rss_music_blogs ++ pure_crawling_music_blogs
 
-  insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url})
-end
-
-Enum.each pure_crawling_music_blogs, fn(blog_data) ->
-  [name, feed_url, country, logo_url, article_link_css] = blog_data
-
-  insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url, article_link_css: article_link_css})
+Enum.each blogs, fn(blog_data) ->
+  case blog_data do
+    [name, feed_url, country, logo_url] ->
+      insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url})
+    [name, feed_url, country, logo_url, article_link_css] ->
+      insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url, article_link_css: article_link_css})
+  end
 end
