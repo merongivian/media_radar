@@ -141,24 +141,25 @@ pure_crawling_music_blogs = [
 
 alias Nanoindie.{Blog, Repo}
 
-Enum.each rss_music_blogs, fn(blog_data) ->
-  [name, feed_url, country, logo_url] = blog_data
+insert_or_update_blog = fn(params) ->
+  feed_url = Map.get(params, :feed_url)
 
   case Repo.get_by(Blog, feed_url: feed_url) do
     nil -> %Blog{}
     blog -> blog
   end
-  |> Blog.changeset(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url})
+  |> Blog.changeset(params)
   |> Repo.insert_or_update!
+end
+
+Enum.each rss_music_blogs, fn(blog_data) ->
+  [name, feed_url, country, logo_url] = blog_data
+
+  insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url})
 end
 
 Enum.each pure_crawling_music_blogs, fn(blog_data) ->
   [name, feed_url, country, logo_url, article_link_css] = blog_data
 
-  case Repo.get_by(Blog, feed_url: feed_url) do
-    nil -> %Blog{}
-    blog -> blog
-  end
-  |> Blog.changeset(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url, article_link_css: article_link_css})
-  |> Repo.insert_or_update!
+  insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url, article_link_css: article_link_css})
 end
