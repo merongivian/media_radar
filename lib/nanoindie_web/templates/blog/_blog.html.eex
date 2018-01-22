@@ -1,10 +1,11 @@
 <div class="tile blog is-parent is-4">
   <div class="tile is-child notification is-light">
-    <p class="title title-link"><%= @blog %></p>
+    <p class="title title-link"><%= @blog.name %></p>
 
-    <p class="subtitle">Ecuador</p>
+    <p class="subtitle"><%= if (is_nil(@blog.country) || String.trim(@blog.country) == ""), do: "Varios Paises", else: full_country_name(@blog.country)  %></p>
     <figure class="image">
-      <%= img_tag static_path(@conn, "/images/blog-default.jpg") %>
+      <% default_image_path = static_path(@conn, "/images/blog-default.jpg") %>
+      <%= img_tag (@blog.logo_url || default_image_path), onerror: ~s(this.error=null;this.src="#{default_image_path}") %>
     </figure>
   </div>
 </div>
