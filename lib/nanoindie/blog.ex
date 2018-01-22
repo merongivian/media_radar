@@ -18,8 +18,7 @@ defmodule Nanoindie.Blog do
   def changeset(%Blog{} = blog, attrs) do
     blog
     |> cast(attrs, [:feed_url, :name, :country, :logo_url, :article_link_css])
-    |> validate_required(:name)
-    |> validate_required(:feed_url)
+    |> validate_required([:name, :feed_url])
     |> unique_constraint(:name)
     |> unique_constraint(:feed_url)
     |> unique_constraint(:logo_url)
