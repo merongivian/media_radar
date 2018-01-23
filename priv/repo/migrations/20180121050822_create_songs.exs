@@ -6,6 +6,7 @@ defmodule Nanoindie.Repo.Migrations.CreateSongs do
       add :title, :string, null: false
       add :source, :string, null: false
       add :media_url, :string, null: false
+      add :published_at, :utc_datetime, null: false
 
       timestamps()
     end

@@ -6,10 +6,11 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <%= @song %>
-          <small class="is-pulled-right">Publicado hace 3 días, creado en <a href="/" target="_blank">Youtube</a></small>
+          <%= @song.title %>
+          <% blog = Nanoindie.Song.prefered_blog(@song) %>
+          <small class="is-pulled-right">Published <%= Timex.from_now(@song.published_at) %>, posted in <%= link (String.capitalize @song.source), to: @song.media_url %></small>
           <br>
-          <%= link "Muzikalia", to: "/" %>
+          <%= link (String.capitalize blog.name), to: "/" %>
         </p>
       </div>
     </div>

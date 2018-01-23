@@ -1,7 +1,7 @@
 defmodule Nanoindie.Blog do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Nanoindie.Blog
+  alias Nanoindie.{Blog, Song, Post}
 
 
   schema "blogs" do
@@ -10,6 +10,8 @@ defmodule Nanoindie.Blog do
     field :feed_url, :string
     field :logo_url, :string
     field :name, :string
+
+    many_to_many :songs, Song, join_through: Post
 
     timestamps()
   end
