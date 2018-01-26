@@ -20,7 +20,7 @@ defmodule Nanoindie.Mixfile do
   def application do
     [
       mod: {Nanoindie.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -42,7 +42,11 @@ defmodule Nanoindie.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:countriex, "~> 0.4"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:httpoison,   "~> 0.13"},
+      {:floki, "~> 0.19.0"},
+      {:quinn, "~> 1.1"},
+      {:bypass, "~> 0.8", only: :test}
     ]
   end
 

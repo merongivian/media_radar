@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+   <channel>
+      <item>
+        <content>
+          <![CDATA[
+            <a href="http://www.example.com/link1">link1</a>
+            <a href="http://www.example.com/link2">link2</a>
+          ]]>
+        </content>
+        <content>
+          <![CDATA[
+            <a href="http://www.example.com/link3">link3</a>
+            <a href="http://www.example.com/link4">link4</a>
+          ]]>
+        </content>
+      </item>
+      <item>
+        <content:encoded>
+          <![CDATA[
+            <a href="http://www.example.com/link5">link5</a>
+            <a href="http://www.example.com/link6">link6</a>
+          ]]>
+        </content:encoded>
+      </item>
+   </channel>
+ </rss>
