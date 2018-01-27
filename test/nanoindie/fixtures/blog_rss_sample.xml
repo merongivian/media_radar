@@ -2,12 +2,16 @@
 <rss version="2.0">
    <channel>
       <entry>
+        <link>http://localhost:1234/one</link>
         <content>
           <![CDATA[
             <a href="http://www.example.com/link1">link1</a>
             <a href="http://www.example.com/link2">link2</a>
           ]]>
         </content>
+      </entry>
+      <entry>
+        <link>http://localhost:1234/two</link>
         <content>
           <![CDATA[
             <a href="http://www.example.com/link3">link3</a>
@@ -16,6 +20,7 @@
         </content>
       </entry>
       <entry>
+        <link>http://localhost:1234/three</link>
         <content:encoded>
           <![CDATA[
             <a href="http://www.example.com/link5">link5</a>

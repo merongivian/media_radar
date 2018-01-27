@@ -6,11 +6,27 @@ defmodule FeedLinks do
     |> Enum.flat_map(&get_links/1)
   end
 
-  def rss_entries(feed_url) do
+  def from_rss_crawling(feed_url) do
     feed_url
+    |> rss_entries()
+    |> Enum.flat_map(&(Map.get &1, :link))
+    |> Enum.flat_map fn(link) ->
+      link
+      |> fetch_page()
+      |> get_links()
+    end
+  end
+
+  defp rss_entries(feed_url) do
+    feed_url
+    |> fetch_page()
+    |> parse_rss()
+  end
+
+  defp fetch_page(url) do
+    url
     |> HTTPoison.get!()
     |> Map.get(:body)
-    |> parse_rss()
   end
 
   defp parse_rss(body) do
@@ -19,7 +35,8 @@ defmodule FeedLinks do
     |> get_rss_entry_nodes()
     |> Enum.map fn(node) ->
       %{
-        content: get_rss_entry_contents(node)
+        content: get_rss_entry_contents(node),
+        link: get_rss_node_values(node, :link)
       }
     end
   end
