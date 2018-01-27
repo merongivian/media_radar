@@ -34,8 +34,10 @@ defmodule BlogFeedLinks do
   end
 
   defp fetch_page(url) do
+    user_agent = [{"User-Agent", System.get_env("CRAWL_USER_AGENT")}]
+
     url
-    |> HTTPoison.get!()
+    |> HTTPoison.get!(user_agent)
     |> Map.get(:body)
   end
 
