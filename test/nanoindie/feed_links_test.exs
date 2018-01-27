@@ -45,7 +45,7 @@ defmodule FeedLinksTest do
   end
 
   @tag entries_fixture: "blog_page_sample.html"
-  test "from_pure_crawling/2", %{feed_url: feed_url, bypass: bypass} do
+  test "from_crawling/2", %{feed_url: feed_url, bypass: bypass} do
     Enum.each ~w(/one /two), fn (entry_path) ->
       entry_page = File.read! "test/nanoindie/fixtures/crawlable_pages/#{entry_path}.html"
       Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
