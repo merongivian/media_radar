@@ -1,4 +1,4 @@
-defmodule FeedLinks do
+defmodule BlogFeedLinks do
   def from_rss(feed_url) do
     feed_url
     |> rss_entries()
@@ -30,7 +30,7 @@ defmodule FeedLinks do
   defp rss_entries(feed_url) do
     feed_url
     |> fetch_page()
-    |> FeedParser.parse()
+    |> Rss.Parser.parse()
   end
 
   defp fetch_page(url) do

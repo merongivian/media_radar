@@ -1,9 +1,9 @@
-defmodule FeedParser do
+defmodule Rss.Parser do
   def parse(raw_feed) do
     raw_feed
     |> Quinn.parse()
     |> entry_nodes()
-    |> Enum.map(&FeedEntry.create/1)
+    |> Enum.map(&Rss.Entry.create/1)
   end
 
   def entry_nodes(main_node) do

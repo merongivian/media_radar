@@ -1,4 +1,4 @@
-defmodule FeedLinksTest do
+defmodule BlogFeedLinksTest do
   use ExUnit.Case, async: true
 
   setup context do
@@ -17,7 +17,7 @@ defmodule FeedLinksTest do
 
   @tag entries_fixture: "blog_rss_sample.xml"
   test "from_rss/1", %{feed_url: feed_url} do
-    assert Enum.sort(FeedLinks.from_rss feed_url) == [
+    assert Enum.sort(BlogFeedLinks.from_rss feed_url) == [
       "http://www.example.com/link1",
       "http://www.example.com/link2",
       "http://www.example.com/link3",
@@ -34,7 +34,7 @@ defmodule FeedLinksTest do
       Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
     end
 
-    assert Enum.sort(FeedLinks.from_rss_crawling feed_url) == [
+    assert Enum.sort(BlogFeedLinks.from_rss_crawling feed_url) == [
       "http://www.example.com/link1",
       "http://www.example.com/link2",
       "http://www.example.com/link3",
@@ -51,7 +51,7 @@ defmodule FeedLinksTest do
       Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
     end
 
-    assert Enum.sort(FeedLinks.from_crawling feed_url, article_link_css: ".media-link") == [
+    assert Enum.sort(BlogFeedLinks.from_crawling feed_url, article_link_css: ".media-link") == [
       "http://www.example.com/link1",
       "http://www.example.com/link2",
       "http://www.example.com/link3",
