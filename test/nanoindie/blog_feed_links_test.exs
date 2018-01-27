@@ -3,14 +3,11 @@ defmodule BlogFeedLinksTest do
 
   setup context do
     bypass = Bypass.open(port: 1234)
-    url = "http://localhost:#{bypass.port}"
-
-    feed_path = "/blog"
-    feed_url = "#{url}#{feed_path}"
+    feed_url = "http://localhost:#{bypass.port}"
 
     rss_response = File.read! "test/nanoindie/fixtures/#{context[:entries_fixture]}"
 
-    Bypass.expect_once bypass, "GET", feed_path, &(Plug.Conn.resp(&1, 200, rss_response))
+    Bypass.expect_once bypass, "GET", "/", &(Plug.Conn.resp(&1, 200, rss_response))
 
     {:ok, feed_url: feed_url, bypass: bypass}
   end

@@ -18,6 +18,7 @@ defmodule BlogFeedLinks do
     |> fetch_page()
     |> Floki.find(article_link_css)
     |> get_links()
+    |> Enum.map(&(complete_internal_url feed_url, &1))
     |> Enum.flat_map(&page_links/1)
   end
 
@@ -45,5 +46,13 @@ defmodule BlogFeedLinks do
     content
     |> Floki.find("a")
     |> Floki.attribute("href")
+  end
+
+  defp complete_internal_url(feed_url, url) do
+    if String.starts_with?(url, "/") do
+      feed_url <> url
+    else
+      url
+    end
   end
 end
