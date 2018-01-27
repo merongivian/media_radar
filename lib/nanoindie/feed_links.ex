@@ -10,11 +10,21 @@ defmodule FeedLinks do
     feed_url
     |> rss_entries()
     |> Enum.flat_map(&(Map.get &1, :link))
-    |> Enum.flat_map fn(link) ->
-      link
-      |> fetch_page()
-      |> get_links()
-    end
+    |> Enum.flat_map(&page_links/1)
+  end
+
+  def from_crawling(feed_url, article_link_css: article_link_css) do
+    feed_url
+    |> fetch_page()
+    |> Floki.find(article_link_css)
+    |> get_links()
+    |> Enum.flat_map(&page_links/1)
+  end
+
+  defp page_links(url) do
+    url
+    |> fetch_page()
+    |> get_links()
   end
 
   defp rss_entries(feed_url) do
