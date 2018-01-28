@@ -43,9 +43,16 @@ defmodule BlogFeedLinks do
   end
 
   defp get_links(content) do
-    content
+    a_links = content
     |> Floki.find("a")
     |> Floki.attribute("href")
+
+    # video links
+    iframe_links = content
+    |> Floki.find("iframe")
+    |> Floki.attribute("src")
+
+    a_links ++ iframe_links
   end
 
   defp complete_internal_url(feed_url, url) do
