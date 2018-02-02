@@ -1,4 +1,5 @@
 alias Nanoindie.{Repo, Blog, Song}
+require Ecto.Query
 
 blog_songs_fetcher = fn(blog) ->
   if is_nil(blog.article_link_css) || String.trim(blog.article_link_css) == "" do
@@ -18,15 +19,18 @@ blog_tasks = Enum.map Repo.all(Blog), fn(blog) ->
     youtube_links = YoutubeLinksFilter.filter(links)
 
     Enum.each youtube_links, fn(yt_link) ->
-      changeset = Song.changeset(%Song{}, %{
-                    title: "Unknown",
-                    media_url: yt_link,
-                    source: "youtube",
-                    published_at: DateTime.utc_now
-                  })
+      already_saved_song = Song
+                 |> Ecto.Query.where(media_url: ^yt_link)
+                 |> Repo.one()
 
-      song = Repo.insert!(changeset)
+      song_params = %{
+        title: "Unknown",
+        media_url: yt_link,
+        source: "youtube",
+        published_at: DateTime.utc_now
+      }
 
+      song = already_saved_song || Song.changeset(%Song{}, song_params) |> Repo.insert!
       Song.link_blog(song, blog)
     end
   end
