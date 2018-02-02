@@ -10,5 +10,7 @@ defmodule Nanoindie.Repo.Migrations.CreateSongs do
 
       timestamps()
     end
+
+    create unique_index(:songs, [:media_url])
   end
 end

@@ -20,6 +20,7 @@ defmodule Nanoindie.Song do
     song
     |> cast(attrs, [:title, :source, :media_url, :published_at])
     |> validate_required([:title, :source, :media_url, :published_at])
+    |> unique_constraint(:media_url)
   end
 
   def link_blog(%Song{} = song, blog) do

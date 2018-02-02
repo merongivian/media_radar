@@ -13,21 +13,19 @@ blog_songs_fetcher = fn(blog) ->
 end
 
 blog_tasks = Enum.map Repo.all(Blog), fn(blog) ->
-  Task.start fn ->
-    IO.puts "fetching songs for blog #{blog.name}"
+  Task.Supervisor.start_child Nanoindie.TaskSupervisor, fn ->
     links = blog_songs_fetcher.(blog)
     youtube_links = YoutubeLinksFilter.filter(links)
 
-    IO.puts youtube_links
-
     Enum.each youtube_links, fn(yt_link) ->
-      IO.puts yt_link
-      song = Repo.insert!(%Song{
-        title: "Unknown",
-        media_url: yt_link,
-        source: "youtube",
-        published_at: DateTime.utc_now
-      })
+      changeset = Song.changeset(%Song{}, %{
+                    title: "Unknown",
+                    media_url: yt_link,
+                    source: "youtube",
+                    published_at: DateTime.utc_now
+                  })
+
+      song = Repo.insert!(changeset)
 
       Song.link_blog(song, blog)
     end
