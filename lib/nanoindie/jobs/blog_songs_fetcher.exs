@@ -14,7 +14,7 @@ blog_songs_fetcher = fn(blog) ->
 end
 
 blog_tasks = Enum.map Repo.all(Blog), fn(blog) ->
-  Task.Supervisor.start_child Nanoindie.TaskSupervisor, fn ->
+  Task.Supervisor.start_child(Nanoindie.TaskSupervisor, fn ->
     links = blog_songs_fetcher.(blog)
     youtube_links = YoutubeLinksFilter.filter(links)
 
@@ -33,5 +33,5 @@ blog_tasks = Enum.map Repo.all(Blog), fn(blog) ->
       song = already_saved_song || Song.changeset(%Song{}, song_params) |> Repo.insert!
       Song.link_blog(song, blog)
     end
-  end
+  end, restart: :transient)
 end
