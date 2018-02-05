@@ -38,7 +38,7 @@ defmodule BlogFeedLinks do
     user_agent = [{"User-Agent", System.get_env("CRAWL_USER_AGENT")}]
 
     url
-    |> HTTPoison.get!(user_agent)
+    |> HTTPoison.get!(user_agent, follow_redirect: true, max_redirect: 5)
     |> Map.get(:body)
   end
 
