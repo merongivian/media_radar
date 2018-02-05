@@ -45,7 +45,6 @@ defmodule Nanoindie.Mixfile do
       {:timex, "~> 3.1"},
       {:httpoison,   "~> 0.13"},
       {:floki, "~> 0.19.0"},
-      {:quinn, "~> 1.1"},
       {:bypass, "~> 0.8", only: :test}
     ]
   end

@@ -10,16 +10,21 @@ defmodule Rss.Entry do
   end
 
   def link(entry_node) do
-    Parser.node_value(entry_node, :link)
+    Parser.node_value(entry_node, "link")
   end
 
   def content(entry_node) do
-    content_node = Parser.node_value(entry_node, :content)
+    content = Parser.node_value(entry_node, "content")
 
-    if Enum.empty?(content_node) do
-      Parser.node_value(entry_node, :"content:encoded")
+    if Enum.empty?(content) do
+      encoded_content = entry_node
+                        |> Enum.find(&(elem(&1, 0) == "content:encoded"))
+                        |> Parser.node_value()
+      # need it in order to be used later with flatmap, refactor
+      [encoded_content]
     else
-      content_node
+      # should return just the string without the array
+      content
     end
   end
 end
