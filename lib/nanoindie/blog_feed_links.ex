@@ -35,10 +35,10 @@ defmodule BlogFeedLinks do
   end
 
   defp fetch_page(url) do
-    user_agent = [{"User-Agent", System.get_env("CRAWL_USER_AGENT")}]
+    user_agent = %{"User-Agent" => "firefox"}
 
     url
-    |> HTTPoison.get!(user_agent, follow_redirect: true, max_redirect: 5)
+    |> Tesla.get(headers: user_agent)
     |> Map.get(:body)
   end
 
