@@ -18,6 +18,7 @@ defmodule Rss.Entry do
 
     if Enum.empty?(content) do
       encoded_content = entry_node
+                        |> Parser.node_value()
                         |> Enum.find(&(elem(&1, 0) == "content:encoded"))
                         |> Parser.node_value()
       # need it in order to be used later with flatmap, refactor
