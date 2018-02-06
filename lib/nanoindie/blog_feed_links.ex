@@ -15,7 +15,7 @@ defmodule BlogFeedLinks do
 
   def from_crawling(feed_url, article_link_css: article_link_css) do
     feed_url
-    |> fetch_page()
+    |> fetch_page(with_agent: true)
     |> Floki.find(article_link_css)
     |> get_links()
     |> Enum.map(&(complete_internal_url feed_url, &1))
@@ -24,7 +24,7 @@ defmodule BlogFeedLinks do
 
   defp page_links(url) do
     url
-    |> fetch_page()
+    |> fetch_page(with_agent: true)
     |> get_links()
   end
 
@@ -34,8 +34,12 @@ defmodule BlogFeedLinks do
     |> Rss.Parser.parse()
   end
 
-  defp fetch_page(url) do
-    user_agent = %{"User-Agent" => "firefox"}
+  defp fetch_page(url, opts \\ [with_agent: false]) do
+    user_agent = if opts[:with_agent] do
+                   %{"User-Agent" => "firefox"}
+                 else
+                   []
+                 end
 
     url
     |> Tesla.get(headers: user_agent)
