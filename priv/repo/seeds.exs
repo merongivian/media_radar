@@ -1,5 +1,5 @@
 rss_music_blogs = [
-  ["radio cocoa", "http://radiococoa.com/RC/category/editorial/listas/feed", "EC", "https://pbs.twimg.com/profile_images/615938569564241920/wLF0G2Rm.png"],
+  ["radio cocoa", "http://radiococoa.com/RC/category/editorial/listas/feed/", "EC", "https://pbs.twimg.com/profile_images/615938569564241920/wLF0G2Rm.png"],
     #'http://radiococoa.com/RC/category/editorial/el-review/'
   ["plan arteria", "http://planarteria.com/category/videos/locales-videos/feed/", "EC", "https://pbs.twimg.com/profile_images/566285624152305664/YuYyeFbw.png"],
     #'http://planarteria.com/category/videos/internacionales-videos/feed/'
@@ -11,7 +11,7 @@ rss_music_blogs = [
     #http://lacajadepandora.co/category/alta-rotacion/videos/feed
   ["subterock", "http://subterock.com/categoria/videos/feed/", "PE", "https://pbs.twimg.com/profile_images/511198577234698240/cVkR643r.png"],
     #http://subterock.com/categoria/bandas/
-  ["indiehoy", "http://www.indiehoy.com/tag/musica-argentina/feed", "AR", "https://f4.bcbits.com/img/0003776300_10.jpg"],
+  ["indiehoy", "http://www.indiehoy.com/tag/musica-argentina/feed/", "AR", "https://f4.bcbits.com/img/0003776300_10.jpg"],
     #http://www.indiehoy.com/descubrir/feed/
     #'http://www.indiehoy.com/listas/'
   ["disorder", "http://www.disorder.cl/musica/feed/", "CL", "https://pbs.twimg.com/profile_images/64477504/logo-disorder-222_400x400.jpg"],
@@ -20,7 +20,7 @@ rss_music_blogs = [
     #https://super45.cl/blog/secciones-s45/feed/
   ["la rata", "http://larata.cl/ratatv/videoclips/feed/", "CL", "http://larata.cl/wp-content/uploads/2015/08/larata-logo-2.png"],
     #http://larata.cl/playlist/nuevos-discos/
-  ["POTQ", "http://www.potq.net/videos/feed", "CL", "http://www.potq.net/wp-content/uploads/logo-potq-500.jpg"],
+  ["POTQ", "http://www.potq.net/videos/feed/", "CL", "http://www.potq.net/wp-content/uploads/logo-potq-500.jpg"],
   ["puerto rico indie", "http://puertoricoindie.com/category/musica/video-musical-musica/feed/", "PR", "http://elname.com/elname/wp-content/uploads/original_site/2.bp.blogspot.com/-BVz4gxweOV8/TvvrLTkTG2I/AAAAAAAAE6c/ryj8nvYxhuU/s1600/prindie-logo.jpg"],
     #http://puertoricoindie.com/category/musica/resena-musical/feed
     #http://puertoricoindie.com/category/musica/feed/
@@ -29,13 +29,13 @@ rss_music_blogs = [
     #http://www.scannerfm.com/audio/musica/canciones/feed/
   ["crazyminds", "http://www.crazyminds.es/category/nuevas-bandas-2/feed/", "ES", "http://www.crazyminds.es/wp-content/uploads/Topnacional-Crazyminds.es_.jpg"],
     #http://www.crazyminds.es/category/listas/feed/
-  ["el amarill0", "http://elamarill0.blogspot.com/feeds/posts/default", nil, nil],
+  ["el amarill0", "http://elamarill0.blogspot.com/feeds/posts/default/", nil, nil],
   ["la pop life", "http://www.lapoplife.com/internacional/feed/", nil, nil],
   ["sounds and colors", "https://soundsandcolours.com/music/feed/", nil, "https://f4.bcbits.com/img/0000684007_10.jpg"],
-  ["rock en las americas", "http://feeds.feedburner.com/RockEnLasAmericas", nil, nil],
+  ["rock en las americas", "http://feeds.feedburner.com/RockEnLasAmericas/", nil, nil],
   ["shookdown", "https://shookdown.es/category/entrevistas/primera-persona/feed/", "ES", "https://shookdown.es/wp-content/uploads/shookdown.png"],
     #https://shookdown.es/category/entrevistas/nuevas-olas-2017/feed/
-  ["la banda elastica", "http://www.labandaelastica.com/rss", "MX", "http://www.labandaelastica.com/sites/default/files/logolabanda_0.png"],
+  ["la banda elastica", "http://www.labandaelastica.com/rss/", "MX", "http://www.labandaelastica.com/sites/default/files/logolabanda_0.png"],
     #http://www.labandaelastica.com/search/content/listas/rss WEB CRAWL
   ["no te detengas", "http://notedetengas.es/category/cancion-de-escucha-compulsiva/feed/", "ES", nil],
     #http://notedetengas.es/category/cancion-de-escucha-compulsiva/feed/
@@ -62,12 +62,12 @@ rss_music_blogs = [
     #http://feeds.feedburner.com/PlanetaPop
   ["segundo premio", "http://www.segundopremio.com/category/emergente_semana/feed/", "ES", nil],
   ["musicaalternativa", "https://www.musicaalternativa.es/feed/", nil, nil],
-  ["signos fm", "https://www.signos.fm/category/videos/feed", "MX", nil],
+  ["signos fm", "https://www.signos.fm/category/videos/feed/", "MX", nil],
   ["reacktor", "http://reacktor.com/feed/", "GT", nil],
   ["guitarras de guate", "http://guitarrasdeguate.blogspot.com/feeds/posts/default", "GT", "http://1.bp.blogspot.com/-C_WvY5YfBP0/VZ8rSn_VGbI/AAAAAAAAAzs/NmkCirkNE84/s1600/rojo%2B%25281%2529.png"],
   ["dance to the radio", "https://dancetotheradio.org/category/reviews/feed/", "CR", "https://dancettradio.files.wordpress.com/2016/08/cropped-dttr_2.jpg"],
   ["kilometro cero", "http://www.kilometrocero.cr/tag/grafiteando-las-notas/feed", "CR", "http://www.kilometrocero.cr/content/images/2017/02/logo2.svg"],
-  ["la base", "http://revista.labasecr.net/category/nueva-musica/feed", "CR", "https://i0.wp.com/revista.labasecr.net/wp-content/uploads/2015/04/cropped-logoHome-portafolio-2.png?fit=290%2C263"],
+  ["la base", "http://revista.labasecr.net/category/nueva-musica/feed/", "CR", "https://i0.wp.com/revista.labasecr.net/wp-content/uploads/2015/04/cropped-logoHome-portafolio-2.png?fit=290%2C263"],
   ["rocknica", "https://rocknica.com/feed/", "NI", "https://rocknica.com/wp-content/uploads/2015/06/rocknica.jpg"],
   ["prensa rock", "http://prensarock.com/category/nacionales/feed/", "GT", "http://prensarock.com/wp-content/uploads/2017/01/logosweb-06-5.png"],
   ["bandera rock", "http://www.banderarock.com/category/nuevo/feed/", "GT", "http://www.banderarock.com/wp-content/uploads/2012/09/logo_homepage_br.png"],
