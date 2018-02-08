@@ -137,7 +137,7 @@ pure_crawling_music_blogs = [
   ["tercer parlante", "https://elcomercio.pe/blog/tercerparlante", "PE", nil, "article.post-blog h2 a"],
   ["rock chorao", "https://rockachorao.lamula.pe", "PE", "http://2.blogs.elcomercio.pe/tercerparlante/wp-content/uploads/sites/275/2015/03/rockachorao.jpg", "section.content-post__portada h1 a"],
   ["sad bastard", "http://www.sad-bastard-music.com/search/label/lanzamientos%20locales", "PE", "https://pbs.twimg.com/profile_images/428757892720644096/lBCrk3S6_400x400.jpeg", "article.post .post-header h2 a"]
-]/
+]
 
 alias Nanoindie.{Blog, Repo}
 

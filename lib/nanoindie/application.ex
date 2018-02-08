@@ -12,7 +12,7 @@ defmodule Nanoindie.Application do
       supervisor(Nanoindie.Repo, []),
       # Start the endpoint when the application starts
       supervisor(NanoindieWeb.Endpoint, []),
-      supervisor(Task.Supervisor, [[name: Nanoindie.TaskSupervisor, max_restarts: 5]])
+      supervisor(Nanoindie.BlogsCrawler.Supervisor, [])
       # Start your own worker by calling: Nanoindie.Worker.start_link(arg1, arg2, arg3)
       # worker(Nanoindie.Worker, [arg1, arg2, arg3]),
     ]
