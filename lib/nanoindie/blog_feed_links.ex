@@ -61,7 +61,9 @@ defmodule BlogFeedLinks do
 
   defp complete_internal_url(feed_url, url) do
     if String.starts_with?(url, "/") do
-      feed_url <> url
+      feed_url
+      |> URI.merge(url)
+      |> URI.to_string()
     else
       url
     end
