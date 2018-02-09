@@ -45,6 +45,7 @@ defmodule Nanoindie.Mixfile do
       {:timex, "~> 3.1"},
       {:tesla, "~> 0.10.0"},
       {:floki, "~> 0.19.0"},
+      {:ex_machina, "~> 2.1", only: :test},
       {:bypass, "~> 0.8", only: :test}
     ]
   end

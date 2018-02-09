@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+   <channel>
+      <entry>
+        <link>http://localhost:1234/one</link>
+        <content>
+          <![CDATA[
+            <a href="https://www.youtube.com/watch?v=1">link1</a>
+            <a href="https://www.youtube.com/watch?v=2">link2</a>
+          ]]>
+        </content>
+      </entry>
+      <entry>
+        <link>http://localhost:1234/two</link>
+        <content>
+          <![CDATA[
+            <a href="https://www.youtube.com/watch?v=3">link3</a>
+            <a href="https://www.youtube.com/watch?v=4">link4</a>
+          ]]>
+        </content>
+      </entry>
+      <entry>
+        <link>http://localhost:1234/three</link>
+        <content:encoded>
+          <![CDATA[
+            <a href="https://www.youtube.com/watch?v=5">link5</a>
+            <a href="https://www.youtube.com/watch?v=6">link6</a>
+          ]]>
+        </content:encoded>
+      </entry>
+   </channel>
+ </rss>
