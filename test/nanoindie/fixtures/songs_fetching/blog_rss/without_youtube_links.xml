@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <entry>
+      <link>http://localhost:1234/one</link>
+      <content>
+        <![CDATA[
+          <a href="https://www.otherlink.com">otherlink</a>
+        ]]>
+      </content>
+    </entry>
+    <entry>
+      <link>http://localhost:1234/two</link>
+      <content>
+        <![CDATA[
+          <a href="https://www.otherlink.com">otherlink</a>
+        ]]>
+      </content>
+    </entry>
+    <entry>
+      <link>http://localhost:1234/three</link>
+      <content:encoded>
+        <![CDATA[
+          <a href="https://www.otherlink.com">otherlink</a>
+        ]]>
+      </content:encoded>
+    </entry>
+   </channel>
+</rss>
