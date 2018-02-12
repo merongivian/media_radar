@@ -1,5 +1,5 @@
 defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
-  alias Nanoindie.Song
+  alias Nanoindie.{Song, Repo}
   import YoutubeLinksFilter, only: [filter: 1]
   require Ecto.Query
 
@@ -23,9 +23,20 @@ defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
   def fetch_songs(blog) do
     songs = blog
             |> song_links()
+            |> reject_persisted_songs(blog)
             |> Enum.map(&create_song/1)
 
     Agent.update(String.to_atom(blog.feed_url), & songs ++ &1)
+  end
+
+  def reject_persisted_songs(song_links, blog) do
+    Enum.filter song_links, fn(song_link) ->
+      blog
+      |> Ecto.assoc(:songs)
+      |> Ecto.Query.where(media_url: ^song_link)
+      |> Repo.one()
+      |> is_nil()
+    end
   end
 
   defp song_links(blog) do

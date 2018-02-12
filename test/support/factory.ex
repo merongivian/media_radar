@@ -14,7 +14,8 @@ defmodule Nanoindie.Factory do
     %Nanoindie.Song{
       title: "Awesome Song",
       source: "Youtube",
-      media_url: sequence(:media_url, &"www.youtube.com/video-#{&1}")
+      media_url: sequence(:media_url, &"www.youtube.com/video-#{&1}"),
+      published_at: DateTime.utc_now
     }
   end
 end
