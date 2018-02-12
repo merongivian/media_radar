@@ -9,6 +9,10 @@ defmodule Nanoindie.BlogsCrawler.Worker do
     GenServer.start_link(__MODULE__, [], name: String.to_atom(blog.name))
   end
 
+  def get_songs(blog) do
+    GenServer.call(String.to_atom(blog.name), {:get_songs, blog})
+  end
+
   def fetch_songs(blog) do
     GenServer.cast(String.to_atom(blog.name), {:fetch_songs, blog})
   end
@@ -24,6 +28,10 @@ defmodule Nanoindie.BlogsCrawler.Worker do
     end
 
     {:noreply, songs}
+  end
+
+  def handle_call({:get_songs, blog}, _from, songs) do
+    {:reply, songs, songs}
   end
 
   defp reject_persisted_songs(song_links, blog) do

@@ -32,9 +32,8 @@ defmodule BlogsCrawler.WorkerTest do
     Worker.start_link(blog)
     Worker.fetch_songs(blog)
 
-    fetched_links = blog.name
-                    |> String.to_atom()
-                    |> :sys.get_state()
+    fetched_links = blog
+                    |> Worker.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
@@ -57,9 +56,8 @@ defmodule BlogsCrawler.WorkerTest do
     Worker.start_link(blog)
     Worker.fetch_songs(blog)
 
-    fetched_links = blog.name
-                    |> String.to_atom()
-                    |> :sys.get_state()
+    fetched_links = blog
+                    |> Worker.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
@@ -82,9 +80,8 @@ defmodule BlogsCrawler.WorkerTest do
     Worker.start_link(blog)
     Worker.fetch_songs(blog)
 
-    fetched_links = blog.name
-                    |> String.to_atom()
-                    |> :sys.get_state()
+    fetched_links = blog
+                    |> Worker.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
