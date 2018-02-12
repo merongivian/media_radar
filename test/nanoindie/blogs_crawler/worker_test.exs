@@ -2,77 +2,98 @@ defmodule BlogsCrawler.WorkerTest do
   use Nanoindie.DataCase
   use ExUnit.Case, async: true
 
+  alias Nanoindie.BlogsCrawler.Worker
+  alias Nanoindie.Song
+
   import Nanoindie.Factory
 
   setup context do
     bypass = Bypass.open(port: 1234)
     feed_url = "http://localhost:#{bypass.port}"
 
-    rss_response = File.read! "test/nanoindie/fixtures/#{context[:rss_fixture]}"
+    response = File.read! "test/nanoindie/fixtures/songs_fetching/#{context[:fixture]}"
 
-    Bypass.expect_once bypass, "GET", "/", &(Plug.Conn.resp(&1, 200, rss_response))
+    Bypass.expect bypass, "GET", "/", &(Plug.Conn.resp(&1, 200, response))
 
-    {:ok, feed_url: feed_url, bypass: bypass}
+    blog = insert(:blog, feed_url: feed_url, article_link_css: context[:article_link_css])
+
+    Enum.each [1, 4, 6], fn(song_id) ->
+      song = insert(:song, media_url: "https://www.youtube.com/watch?v=#{song_id}")
+      Song.link_blog(song, blog)
+    end
+
+    insert(:song, media_url: "https://www.youtube.com/watch?v=5")
+
+    {:ok, feed_url: feed_url, bypass: bypass, blog: blog}
   end
 
-  @tag rss_fixture: "blog_rss_with_youtube_links.xml"
-  test "fetch_songs/1", %{feed_url: feed_url} do
-    blog = insert(:blog, feed_url: feed_url)
+  @tag fixture: "blog_rss/with_youtube_links.xml"
+  test "fetch_songs/1 from rss", %{blog: blog} do
+    Worker.start_link(blog)
+    Worker.fetch_songs(blog)
 
-    Nanoindie.BlogsCrawler.Worker.start_link(blog)
-    Nanoindie.BlogsCrawler.Worker.fetch_songs(blog)
-
-    songs = blog.name
-    |> String.to_atom()
-    |> :sys.get_state()
-
-    persisted_links = Nanoindie.Blog
-                      |> Nanoindie.Repo.get_by(feed_url: feed_url)
-                      |> Ecto.assoc(:songs)
-                      |> Repo.all
-                      |> Enum.map(& &1.media_url)
-                      |> Enum.sort
-
-    links = ~w(
-      https://www.youtube.com/watch?v=1
-      https://www.youtube.com/watch?v=2
-      https://www.youtube.com/watch?v=3
-      https://www.youtube.com/watch?v=4
-      https://www.youtube.com/watch?v=5
-      https://www.youtube.com/watch?v=6
-    )
-
-    assert persisted_links = links
-  end
-
-  @tag rss_fixture: "blog_rss_with_youtube_links.xml"
-  test "fetch_songs/1 with songs already persisted" do
-    blog = insert(:blog, feed_url: feed_url)
-
-    insert(:song, media_url: "https://www.youtube.com/watch?v=1")
-    insert(:song, media_url: "https://www.youtube.com/watch?v=4")
-
-    Nanoindie.BlogsCrawler.Worker.start_link(blog)
-    Nanoindie.BlogsCrawler.Worker.fetch_songs(blog)
-
-    blog.name
-    |> String.to_atom()
-    |> :sys.get_state()
-
-    persisted_links = Nanoindie.Blog
-                      |> Nanoindie.Repo.get_by(feed_url: feed_url)
-                      |> Ecto.assoc(:songs)
-                      |> Repo.all
-                      |> Enum.map(& &1.media_url)
-                      |> Enum.sort
+    fetched_links = blog.name
+                    |> String.to_atom()
+                    |> :sys.get_state()
+                    |> Enum.map(& &1.media_url)
+                    |> Enum.sort()
 
     links = ~w(
       https://www.youtube.com/watch?v=2
       https://www.youtube.com/watch?v=3
       https://www.youtube.com/watch?v=5
-      https://www.youtube.com/watch?v=6
     )
 
-    assert persisted_links = links
+    assert fetched_links == links
+  end
+
+  @tag fixture: "blog_rss/without_youtube_links.xml"
+  test "fetch_songs/1 from crawled rss links", %{bypass: bypass, blog: blog} do
+    Enum.each ~w(/one /two /three), fn (entry_path) ->
+      entry_page = File.read! "test/nanoindie/fixtures/songs_fetching/blog_pages/#{entry_path}.html"
+      Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
+    end
+
+    Worker.start_link(blog)
+    Worker.fetch_songs(blog)
+
+    fetched_links = blog.name
+                    |> String.to_atom()
+                    |> :sys.get_state()
+                    |> Enum.map(& &1.media_url)
+                    |> Enum.sort()
+
+    links = ~w(
+      https://www.youtube.com/watch?v=2
+      https://www.youtube.com/watch?v=3
+      https://www.youtube.com/watch?v=5
+    )
+
+    assert fetched_links == links
+  end
+
+  @tag fixture: "blog_with_articles.html", article_link_css: ".song"
+  test "fetch_songs/1 from crawled article links", %{bypass: bypass, blog: blog} do
+    Enum.each ~w(/one /two /three), fn (entry_path) ->
+      entry_page = File.read! "test/nanoindie/fixtures/songs_fetching/blog_pages/#{entry_path}.html"
+      Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
+    end
+
+    Worker.start_link(blog)
+    Worker.fetch_songs(blog)
+
+    fetched_links = blog.name
+                    |> String.to_atom()
+                    |> :sys.get_state()
+                    |> Enum.map(& &1.media_url)
+                    |> Enum.sort()
+
+    links = ~w(
+      https://www.youtube.com/watch?v=2
+      https://www.youtube.com/watch?v=3
+      https://www.youtube.com/watch?v=5
+    )
+
+    assert fetched_links == links
   end
 end
