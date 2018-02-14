@@ -6,7 +6,7 @@ defmodule Nanoindie.BlogsCrawler.Supervisor do
   end
 
   def start_child(blog) do
-    spec = Supervisor.Spec.worker(Nanoindie.BlogsCrawler.Worker, [blog])
+    spec = Supervisor.Spec.worker(Nanoindie.BlogsCrawler.Workers.Fetcher, [blog])
     DynamicSupervisor.start_child(__MODULE__, spec)
   end
 

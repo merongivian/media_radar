@@ -1,5 +1,5 @@
-defmodule Nanoindie.BlogsCrawler.Worker do
-  alias Nanoindie.{Song, Repo}
+defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
+  alias Nanoindie.Repo
   import YoutubeLinksFilter, only: [filter: 1]
   require Ecto.Query
 
@@ -22,10 +22,6 @@ defmodule Nanoindie.BlogsCrawler.Worker do
             |> song_links()
             |> reject_persisted_songs(blog)
             |> Enum.map(&create_song/1)
-
-    Task.start_link fn ->
-      Enum.each(songs, & persist_song(blog, &1))
-    end
 
     {:noreply, songs}
   end
@@ -75,14 +71,5 @@ defmodule Nanoindie.BlogsCrawler.Worker do
       source: "youtube",
       published_at: DateTime.utc_now
     }
-  end
-
-  defp persist_song(blog, song_params) do
-    already_saved_song = Song
-                         |> Ecto.Query.where(media_url: ^song_params.media_url)
-                         |> Repo.one()
-
-    song = already_saved_song || Song.changeset(%Song{}, song_params) |> Repo.insert!
-    Song.link_blog(song, blog)
   end
 end

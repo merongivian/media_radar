@@ -1,6 +1,8 @@
-alias Nanoindie.{Repo, Blog, Song}
+alias Nanoindie.{Repo, Blog}
 
 Enum.map Repo.all(Blog), fn(blog) ->
-  Nanoindie.BlogsCrawler.Supervisor.start_child(blog)
-  Nanoindie.BlogsCrawler.Worker.fetch_songs(blog)
+  Task.start_link fn ->
+    Nanoindie.BlogsCrawler.Supervisor.start_child(blog)
+    Nanoindie.BlogsCrawler.Workers.Fetcher.fetch_songs(blog)
+  end
 end

@@ -1,8 +1,8 @@
-defmodule BlogsCrawler.WorkerTest do
+defmodule BlogsCrawler.Workers.FetcherTest do
   use Nanoindie.DataCase
   use ExUnit.Case, async: true
 
-  alias Nanoindie.BlogsCrawler.Worker
+  alias Nanoindie.BlogsCrawler.Workers.Fetcher
   alias Nanoindie.Song
 
   import Nanoindie.Factory
@@ -29,11 +29,11 @@ defmodule BlogsCrawler.WorkerTest do
 
   @tag fixture: "blog_rss/with_youtube_links.xml"
   test "fetch_songs/1 from rss", %{blog: blog} do
-    Worker.start_link(blog)
-    Worker.fetch_songs(blog)
+    Fetcher.start_link(blog)
+    Fetcher.fetch_songs(blog)
 
     fetched_links = blog
-                    |> Worker.get_songs()
+                    |> Fetcher.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
@@ -53,11 +53,11 @@ defmodule BlogsCrawler.WorkerTest do
       Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
     end
 
-    Worker.start_link(blog)
-    Worker.fetch_songs(blog)
+    Fetcher.start_link(blog)
+    Fetcher.fetch_songs(blog)
 
     fetched_links = blog
-                    |> Worker.get_songs()
+                    |> Fetcher.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
@@ -77,11 +77,11 @@ defmodule BlogsCrawler.WorkerTest do
       Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
     end
 
-    Worker.start_link(blog)
-    Worker.fetch_songs(blog)
+    Fetcher.start_link(blog)
+    Fetcher.fetch_songs(blog)
 
     fetched_links = blog
-                    |> Worker.get_songs()
+                    |> Fetcher.get_songs()
                     |> Enum.map(& &1.media_url)
                     |> Enum.sort()
 
