@@ -10,7 +10,7 @@ defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
   end
 
   def get_songs(blog) do
-    GenServer.call(String.to_atom(blog.name), {:get_songs, blog})
+    GenServer.call(String.to_atom(blog.name), {:get_songs})
   end
 
   def fetch_songs(blog) do
@@ -26,7 +26,7 @@ defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
     {:noreply, songs}
   end
 
-  def handle_call({:get_songs, blog}, _from, songs) do
+  def handle_call({:get_songs}, _from, songs) do
     {:reply, songs, songs}
   end
 
