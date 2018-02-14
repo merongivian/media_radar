@@ -1,4 +1,4 @@
-defmodule YoutubeLinksFilter do
+defmodule Youtube.LinksFilter do
   def filter(links) do
     filtered_links = Enum.reject links, fn(link) ->
       Regex.run(~r/list/, link)

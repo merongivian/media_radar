@@ -1,4 +1,4 @@
-defmodule YoutubeLinksFilterTest do
+defmodule Youtube.LinksFilterTest do
   use ExUnit.Case, async: true
 
   test "returning only embed and watch youtube links" do
@@ -9,7 +9,7 @@ defmodule YoutubeLinksFilterTest do
       "https://www.youtube.com/other/any"
     ]
 
-    assert Enum.sort(YoutubeLinksFilter.filter links) == [
+    assert Enum.sort(Youtube.LinksFilter.filter links) == [
       "https://www.youtube.com/watch?v=123",
       "https://www.youtube.com/watch?v=456"
     ]
@@ -24,7 +24,7 @@ defmodule YoutubeLinksFilterTest do
       "https://www.youtube.com/embed/679",
     ]
 
-    assert Enum.sort(YoutubeLinksFilter.filter links) == [
+    assert Enum.sort(Youtube.LinksFilter.filter links) == [
       "https://www.youtube.com/watch?v=123",
       "https://www.youtube.com/watch?v=456",
       "https://www.youtube.com/watch?v=679",
@@ -39,7 +39,7 @@ defmodule YoutubeLinksFilterTest do
       "https://www.youtube.com/embed/789?rel=oembed?some"
     ]
 
-    assert Enum.sort(YoutubeLinksFilter.filter links) == [
+    assert Enum.sort(Youtube.LinksFilter.filter links) == [
       "https://www.youtube.com/watch?v=123",
       "https://www.youtube.com/watch?v=444",
       "https://www.youtube.com/watch?v=456",
@@ -54,7 +54,7 @@ defmodule YoutubeLinksFilterTest do
       "https://www.youtube.com/watch?v=456&list=some",
     ]
 
-    assert Enum.sort(YoutubeLinksFilter.filter links) == [
+    assert Enum.sort(Youtube.LinksFilter.filter links) == [
       "https://www.youtube.com/watch?v=789"
     ]
   end

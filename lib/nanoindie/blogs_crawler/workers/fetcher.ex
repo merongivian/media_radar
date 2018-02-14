@@ -1,6 +1,6 @@
 defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
   alias Nanoindie.Repo
-  import YoutubeLinksFilter, only: [filter: 1]
+  import Youtube.LinksFilter, only: [filter: 1]
   require Ecto.Query
 
   use GenServer
