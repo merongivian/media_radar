@@ -13,10 +13,10 @@ defmodule Youtube.Api do
                  ]
                )
 
-    results = response.body
-              |> Map.get("items")
-              |> List.first()
-              |> snippet()
+    response.body
+    |> Map.get("items")
+    |> List.first()
+    |> snippet()
   end
 
   defp snippet(first_item) do
