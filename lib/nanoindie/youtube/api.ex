@@ -13,9 +13,17 @@ defmodule Youtube.Api do
                  ]
                )
 
-    response.body
-    |> Map.get("items")
-    |> List.first()
-    |> Map.get("snippet")
+    results = response.body
+              |> Map.get("items")
+              |> List.first()
+              |> snippet()
+  end
+
+  defp snippet(first_item) do
+    if is_nil(first_item) do
+      %{"title" => "Unknown"}
+    else
+      first_item["snippet"]
+    end
   end
 end

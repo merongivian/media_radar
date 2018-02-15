@@ -13,6 +13,10 @@ defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
     GenServer.call(String.to_atom(blog.name), {:get_songs})
   end
 
+  def update_songs(songs, blog) do
+    GenServer.cast(String.to_atom(blog.name), {:update_songs, songs})
+  end
+
   def fetch_songs(blog) do
     GenServer.cast(String.to_atom(blog.name), {:fetch_songs, blog})
   end
@@ -24,6 +28,10 @@ defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
             |> Enum.map(&create_song/1)
 
     {:noreply, songs}
+  end
+
+  def handle_cast({:update_songs, modified_songs}, _songs) do
+    {:noreply, modified_songs}
   end
 
   def handle_call({:get_songs}, _from, songs) do
