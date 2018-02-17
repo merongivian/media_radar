@@ -1,41 +1,13 @@
-defmodule Nanoindie.BlogsCrawler.Workers.Fetcher do
+defmodule Nanoindie.BlogsCrawler.Fetcher do
   alias Nanoindie.Repo
   import Youtube.LinksFilter, only: [filter: 1]
   require Ecto.Query
 
-  use GenServer
-
-  def start_link(blog) do
-    GenServer.start_link(__MODULE__, [], name: String.to_atom(blog.name))
-  end
-
-  def get_songs(blog) do
-    GenServer.call(String.to_atom(blog.name), {:get_songs})
-  end
-
-  def update_songs(songs, blog) do
-    GenServer.cast(String.to_atom(blog.name), {:update_songs, songs})
-  end
-
-  def fetch_songs(blog) do
-    GenServer.cast(String.to_atom(blog.name), {:fetch_songs, blog})
-  end
-
-  def handle_cast({:fetch_songs, blog}, _songs) do
-    songs = blog
-            |> song_links()
-            |> reject_persisted_songs(blog)
-            |> Enum.map(&create_song/1)
-
-    {:noreply, songs}
-  end
-
-  def handle_cast({:update_songs, modified_songs}, _songs) do
-    {:noreply, modified_songs}
-  end
-
-  def handle_call({:get_songs}, _from, songs) do
-    {:reply, songs, songs}
+  def fetch(blog) do
+    blog
+    |> song_links()
+    |> reject_persisted_songs(blog)
+    |> Enum.map(&create_song/1)
   end
 
   defp reject_persisted_songs(song_links, blog) do

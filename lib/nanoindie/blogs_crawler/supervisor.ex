@@ -1,15 +1,10 @@
 defmodule Nanoindie.BlogsCrawler do
   alias Nanoindie.{Repo, Blog}
-  alias Nanoindie.BlogsCrawler.Workers.{Fetcher, Persister, Titleizer}
 
   def crawl do
     Enum.map Repo.all(Blog), fn(blog) ->
-      Task.start_link fn ->
-        Nanoindie.BlogsCrawler.Supervisor.start_child(blog)
-        Fetcher.fetch_songs(blog)
-        Titleizer.set_titles(blog)
-        Persister.persist(blog)
-      end
+      Nanoindie.BlogsCrawler.Supervisor.start_child(blog)
+      Nanoindie.BlogsCrawler.Worker.process(blog)
     end
   end
 end
@@ -22,7 +17,7 @@ defmodule Nanoindie.BlogsCrawler.Supervisor do
   end
 
   def start_child(blog) do
-    spec = Supervisor.Spec.worker(Nanoindie.BlogsCrawler.Workers.Fetcher, [blog])
+    spec = Supervisor.Spec.worker(Nanoindie.BlogsCrawler.Worker, [blog])
     DynamicSupervisor.start_child(__MODULE__, spec)
   end
 

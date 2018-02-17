@@ -1,11 +1,6 @@
-defmodule Nanoindie.BlogsCrawler.Workers.Titleizer do
-  alias Nanoindie.BlogsCrawler.Workers.Fetcher
-
-  def set_titles(blog) do
-    blog
-    |> Fetcher.get_songs()
-    |> Enum.map(&set_title/1)
-    |> Fetcher.update_songs(blog)
+defmodule Nanoindie.BlogsCrawler.Titleizer do
+  def set_titles(songs) do
+    songs |> Enum.map(&set_title/1)
   end
 
   defp set_title(song) do

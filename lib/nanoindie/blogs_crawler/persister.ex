@@ -1,11 +1,9 @@
-defmodule Nanoindie.BlogsCrawler.Workers.Persister do
+defmodule Nanoindie.BlogsCrawler.Persister do
   alias Nanoindie.{Song, Repo}
   require Ecto.Query
 
-  def persist(blog) do
-    blog
-    |> Nanoindie.BlogsCrawler.Workers.Fetcher.get_songs()
-    |> Enum.each(& persist_song(blog, &1))
+  def persist(songs, blog) do
+    songs |> Enum.each(& persist_song(blog, &1))
   end
 
   defp persist_song(blog, song_params) do
