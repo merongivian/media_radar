@@ -1,8 +1,11 @@
 <div class="tile blog is-parent is-4">
   <div class="tile is-child notification is-light">
-    <p class="title title-link"><%= @blog.name %></p>
+    <p class="title title-link">
+      <%= link @blog.name, to: blog_song_path(@conn, :index, @blog.id), class: "title title-link" %>
+    </p>
 
-    <p class="subtitle"><%= if (is_nil(@blog.country) || String.trim(@blog.country) == ""), do: "Varios Paises", else: full_country_name(@blog.country)  %></p>
+
+    <p class="subtitle"><%= if (is_nil(@blog.country) || String.trim(@blog.country) == ""), do: "Varios Paises", else: full_country_name(@blog.country) %></p>
     <figure class="image">
       <% default_image_path = static_path(@conn, "/images/blog-default.jpg") %>
       <%= img_tag (@blog.logo_url || default_image_path), onerror: ~s(this.error=null;this.src="#{default_image_path}") %>

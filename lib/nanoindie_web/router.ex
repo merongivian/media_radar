@@ -18,7 +18,10 @@ defmodule NanoindieWeb.Router do
 
     get  "/", SongController, :index
 
-    resources "/blogs", BlogController, only: ~w(index)a
+    resources "/blogs", BlogController, only: ~w(index)a do
+      resources "/songs", SongController, only: ~w(index)a
+    end
+
     resources "/songs", SongController, only: ~w(index)a
   end
 
