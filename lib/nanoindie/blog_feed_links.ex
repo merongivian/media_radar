@@ -1,31 +1,64 @@
 defmodule BlogFeedLinks do
+  defmodule Link do
+    defstruct url: "", published_at: DateTime.utc_now
+  end
+
   def from_rss(feed_url) do
     feed_url
     |> rss_entries()
-    |> Enum.flat_map(&(Map.get &1, :content))
-    |> Enum.flat_map(&get_links/1)
+    |> Enum.flat_map(& create_links(&1, urls_from: :content))
   end
 
   def from_rss_crawling(feed_url) do
     feed_url
     |> rss_entries()
-    |> Enum.flat_map(&(Map.get &1, :link))
-    |> Enum.flat_map(&page_links/1)
+    |> Enum.flat_map(& create_links(&1, urls_from: :link))
   end
 
   def from_crawling(feed_url, article_link_css: article_link_css) do
     feed_url
     |> fetch_page(with_agent: true)
     |> Floki.find(article_link_css)
-    |> get_links()
+    |> crawl_urls()
     |> Enum.map(&(complete_internal_url feed_url, &1))
-    |> Enum.flat_map(&page_links/1)
+    |> Enum.flat_map(&page_urls/1)
+    |> Enum.map(&create_link(url: &1))
   end
 
-  defp page_links(url) do
-    url
+  defp create_links(entry, urls_from: :content = urls_from) do
+    entry
+    |> Map.get(urls_from)
+    # TODO: This is weird, the pattern match in the parser should extract the value from the array
+    |> List.first
+    |> crawl_urls()
+    |> Enum.map(fn crawled_url ->
+      create_link(url: crawled_url, published_at: entry.published_at)
+    end)
+  end
+
+  defp create_links(entry, urls_from: :link = urls_from) do
+    entry
+    |> Map.get(urls_from)
+    # TODO: This is weird, the pattern match in the parser should extract the value from the array
+    |> List.first
+    |> page_urls()
+    |> Enum.map(fn crawled_url ->
+      create_link(url: crawled_url, published_at: entry.published_at)
+    end)
+  end
+
+  defp create_link(url: url) do
+    %BlogFeedLinks.Link{url: url}
+  end
+
+  defp create_link(url: url, published_at: published_at) do
+    %BlogFeedLinks.Link{url: url, published_at: published_at}
+  end
+
+  defp page_urls(page_link) do
+    page_link
     |> fetch_page(with_agent: true)
-    |> get_links()
+    |> crawl_urls()
   end
 
   defp rss_entries(feed_url) do
@@ -46,7 +79,7 @@ defmodule BlogFeedLinks do
     |> Map.get(:body)
   end
 
-  defp get_links(content) do
+  defp crawl_urls(content) do
     a_links = content
     |> Floki.find("a")
     |> Floki.attribute("href")

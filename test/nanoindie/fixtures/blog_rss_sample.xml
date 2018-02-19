@@ -3,6 +3,7 @@
    <channel>
       <entry>
         <link>http://localhost:1234/one</link>
+        <pubDate>Wed, 30 Aug 2017 00:57:31 +0000</pubDate>
         <content>
           <![CDATA[
             <a href="http://www.example.com/link1">link1</a>
@@ -12,6 +13,7 @@
       </entry>
       <entry>
         <link>http://localhost:1234/two</link>
+        <pubDate>Tue, 29 Aug 2017 01:57:31 +0000</pubDate>
         <content>
           <![CDATA[
             <a href="http://www.example.com/link3">link3</a>
@@ -21,6 +23,7 @@
       </entry>
       <entry>
         <link>http://localhost:1234/three</link>
+        <pubDate>Mon, 28 Aug 2017 02:57:31 +0000</pubDate>
         <content:encoded>
           <![CDATA[
             <a href="http://www.example.com/link5">link5</a>

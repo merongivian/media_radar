@@ -1,6 +1,5 @@
 defmodule Nanoindie.BlogsCrawler.Fetcher do
   alias Nanoindie.Repo
-  import Youtube.LinksFilter, only: [filter: 1]
   require Ecto.Query
 
   def fetch(blog) do
@@ -14,7 +13,7 @@ defmodule Nanoindie.BlogsCrawler.Fetcher do
     Enum.filter song_links, fn(song_link) ->
       blog
       |> Ecto.assoc(:songs)
-      |> Ecto.Query.where(media_url: ^song_link)
+      |> Ecto.Query.where(media_url: ^song_link.url)
       |> Repo.one()
       |> is_nil()
     end
@@ -22,7 +21,7 @@ defmodule Nanoindie.BlogsCrawler.Fetcher do
 
   defp song_links(blog) do
     if is_nil(blog.article_link_css) || String.trim(blog.article_link_css) == "" do
-     rss_song_links(blog)
+      rss_song_links(blog)
     else
       blog.feed_url
       |> BlogFeedLinks.from_crawling(article_link_css: blog.article_link_css)
@@ -47,9 +46,19 @@ defmodule Nanoindie.BlogsCrawler.Fetcher do
   defp create_song(link) do
     %{
       title: "Unknown",
-      media_url: link,
+      media_url: link.url,
       source: "youtube",
-      published_at: DateTime.utc_now
+      published_at: link.published_at
     }
+  end
+
+  defp filter(links) do
+    filtered_urls = links
+                    |> Enum.map(& Map.get(&1, :url))
+                    |> Youtube.UrlsFilter.filter()
+
+    Enum.filter links, fn(link) ->
+      Enum.find(filtered_urls, &(link.url == &1))
+    end
   end
 end
