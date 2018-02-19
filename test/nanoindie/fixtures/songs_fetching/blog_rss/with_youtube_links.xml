@@ -6,7 +6,7 @@
         <content>
           <![CDATA[
             <a href="https://www.youtube.com/watch?v=1">link1</a>
-            <a href="https://www.youtube.com/watch?v=2">otherlink</a>
+            <a href="https://www.youtube.com/embed/2">otherlink</a>
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
         </content>
@@ -15,7 +15,7 @@
         <link>http://localhost:1234/two</link>
         <content>
           <![CDATA[
-            <a href="https://www.youtube.com/watch?v=3">link3</a>
+            <a href="https://www.youtube.com/embed/3">link3</a>
             <a href="https://www.youtube.com/watch?v=4">link4</a>
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
@@ -25,7 +25,7 @@
         <link>http://localhost:1234/three</link>
         <content:encoded>
           <![CDATA[
-            <a href="https://www.youtube.com/watch?v=5">link5</a>
+            <a href="https://www.youtube.com/embed/5">link5</a>
             <a href="https://www.youtube.com/watch?v=6">link6</a>
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
