@@ -1,5 +1,5 @@
 <h2>Playlist: Nuevos Tracks</h2>
 
 <%= for song <- @songs do %>
-  <%= render NanoindieWeb.SongView, "_song.html", song: song, conn: @conn %>
+  <%= render NanoindieWeb.SongView, "_song.html", song: song, blog: @blog, conn: @conn %>
 <% end %>

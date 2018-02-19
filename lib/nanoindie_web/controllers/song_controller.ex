@@ -4,16 +4,15 @@ defmodule NanoindieWeb.SongController do
   require Ecto.Query
 
   def index(conn, params) do
-    songs = if params["blog_id"] do
-              Blog
-              |> Repo.get_by(id: params["blog_id"])
-              |> Ecto.assoc(:songs)
+    blog  = params["blog_id"] && Repo.get_by(Blog, id: params["blog_id"])
+    songs = if blog do
+              Ecto.assoc(blog, :songs)
             else
               Song
             end
             |> Ecto.Query.limit(200)
             |> Repo.all()
 
-    render conn, "index.html", songs: songs
+    render conn, "index.html", songs: songs, blog: blog
   end
 end
