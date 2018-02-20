@@ -38,8 +38,8 @@ defmodule Rss.Entry do
     end
   end
 
-  defp parse_date(date) do
-    case Timex.parse("%a, %d %b %Y %H:%M:%S %z", :strftime) do
+  defp parse_date(date_string) do
+    case Timex.parse(date_string, "%a, %d %b %Y %H:%M:%S %z", :strftime) do
       {:error, _} -> DateTime.utc_now
       {:ok, date} -> date
     end
