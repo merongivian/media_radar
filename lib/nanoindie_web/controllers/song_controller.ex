@@ -10,6 +10,7 @@ defmodule NanoindieWeb.SongController do
             else
               Song
             end
+            |> Ecto.Query.order_by(desc: :published_at)
             |> Ecto.Query.limit(200)
             |> Repo.all()
 
