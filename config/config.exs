@@ -24,7 +24,7 @@ config :logger, :console,
 
 config :nanoindie, Nanoindie.BlogsCrawler.Scheduler,
   jobs: [
-    {"*/180 * * * *",   fn -> Nanoindie.BlogsCrawler.crawl() end}
+    {"*/60 * * * *",   fn -> Nanoindie.BlogsCrawler.crawl() end}
   ]
 
 # Import environment specific config. This must remain at the bottom
