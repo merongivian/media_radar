@@ -1,7 +1,7 @@
 <div class="box song-card">
   <article class="media">
     <div class="media-left">
-      <i class="fa fa-play-circle fa-2x hvr-pop"></i>
+      <i class="fa fa-play-circle fa-2x hvr-pop" data-song-url="<%= @song.media_url %>" data-song-index="<%= @song_counter %>"  data-song-title="<%= @song.title %>"></i>
     </div>
     <div class="media-content">
       <div class="content">

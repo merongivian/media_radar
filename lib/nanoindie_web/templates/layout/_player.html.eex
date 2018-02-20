@@ -1,0 +1,17 @@
+<div id="playem_video" class="is-pulled-right"></div>
+
+<div id="player">
+  <i id="song-loading" class="fa fa-spinner fa-3x fa-fw fa-pulse is-invisible"></i>
+
+  <div id="media-controls">
+    <p id="song-title"></p>
+    <div>
+
+      <div class="media-buttons">
+        <i id="play-previous" class="fa fa-backward fa-lg"></i>
+        <i id="play-current" class="fa fa-lg fa-play"></i>
+        <i id="play-next" class="fa fa-forward fa-lg"></i>
+      </div>
+    </div>
+  </div>
+</div>

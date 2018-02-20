@@ -2642,6 +2642,13 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
+playemjs@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/playemjs/-/playemjs-0.1.8.tgz#f9782131dd52db7318ca67af184d4dd858085416"
+  dependencies:
+    soundmanager2 scottschiller/SoundManager2
+    swfobject "^2.2.1"
+
 postcss-modules-extract-imports@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.1.0.tgz#b614c9720be6816eaee35fb3a5faa1dba6a05ddb"
@@ -3184,6 +3191,14 @@ sntp@2.x.x:
   dependencies:
     hoek "4.x.x"
 
+soundmanager2@^2.97.20170602:
+  version "2.97.20170602"
+  resolved "https://registry.yarnpkg.com/soundmanager2/-/soundmanager2-2.97.20170602.tgz#fe3bc731bfc4d54c1364e71980263e6816981879"
+
+soundmanager2@scottschiller/SoundManager2:
+  version "2.97.20170601"
+  resolved "https://codeload.github.com/scottschiller/SoundManager2/tar.gz/f432aa9ed96a0f9022e72fc4a1b977ba0643ed71"
+
 source-map-support@^0.4.15:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
@@ -3325,6 +3340,10 @@ supports-color@^5.1.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.1.0.tgz#058a021d1b619f7ddf3980d712ea3590ce7de3d5"
   dependencies:
     has-flag "^2.0.0"
+
+swfobject@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/swfobject/-/swfobject-2.2.1.tgz#e55451d5dde59657335c86b01732c61a923293e2"
 
 tag-shell@~0.1.0:
   version "0.1.0"

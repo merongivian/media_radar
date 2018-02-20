@@ -100,6 +100,7 @@ nav {
  transition: 1s bottom ease;
  padding-left: 45px;
  padding-right: 45px;
+ z-index: +1;
 
  #song-loading {
    // TODO: this is a hacky way to center this vertically
@@ -139,6 +140,7 @@ nav {
   position: fixed;
   bottom: $playerHeight;
   right: 20px;
+  z-index: +1;
 
   iframe {
     pointer-events: none;

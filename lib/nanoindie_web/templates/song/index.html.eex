@@ -1,5 +1,5 @@
 <h2>Playlist: Nuevos Tracks</h2>
 
-<%= for song <- @songs do %>
-  <%= render NanoindieWeb.SongView, "_song.html", song: song, blog: @blog, conn: @conn %>
+<%= for {song, i} <- Enum.with_index(@songs) do %>
+  <%= render NanoindieWeb.SongView, "_song.html", song: song, blog: @blog, conn: @conn, song_counter: i %>
 <% end %>

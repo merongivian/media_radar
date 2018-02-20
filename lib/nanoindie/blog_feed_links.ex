@@ -1,4 +1,8 @@
 defmodule BlogFeedLinks do
+  use Tesla
+
+  #plug Tesla.Middleware.TupleForEconnrefused
+
   defmodule Link do
     defstruct url: "", published_at: DateTime.utc_now
   end
@@ -74,8 +78,13 @@ defmodule BlogFeedLinks do
                    []
                  end
 
+    #case get(url, headers: user_agent) do
+      #{:ok, response} -> response.body
+      #{:error, :econnrefused} -> ""
+    #end
+
     url
-    |> Tesla.get(headers: user_agent)
+    |> get(headers: user_agent)
     |> Map.get(:body)
   end
 
