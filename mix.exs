@@ -46,6 +46,7 @@ defmodule Nanoindie.Mixfile do
       {:tesla, "~> 0.10.0"},
       {:floki, "~> 0.19.0"},
       {:quantum, "~> 2.2"},
+      {:feedraptor, "~> 0.3.0"},
       {:ex_machina, "~> 2.1", only: :test},
       {:bypass, "~> 0.8", only: :test}
     ]

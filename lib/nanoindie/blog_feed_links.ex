@@ -16,7 +16,7 @@ defmodule BlogFeedLinks do
   def from_rss_crawling(feed_url) do
     feed_url
     |> rss_entries()
-    |> Enum.flat_map(& create_links(&1, urls_from: :link))
+    |> Enum.flat_map(& create_links(&1, urls_from: :url))
   end
 
   def from_crawling(feed_url, article_link_css: article_link_css) do
@@ -32,22 +32,18 @@ defmodule BlogFeedLinks do
   defp create_links(entry, urls_from: :content = urls_from) do
     entry
     |> Map.get(urls_from)
-    # TODO: This is weird, the pattern match in the parser should extract the value from the array
-    |> List.first
     |> crawl_urls()
     |> Enum.map(fn crawled_url ->
-      create_link(url: crawled_url, published_at: entry.published_at)
+      create_link(url: crawled_url, published_at: entry.published)
     end)
   end
 
-  defp create_links(entry, urls_from: :link = urls_from) do
+  defp create_links(entry, urls_from: :url = urls_from) do
     entry
     |> Map.get(urls_from)
-    # TODO: This is weird, the pattern match in the parser should extract the value from the array
-    |> List.first
     |> page_urls()
     |> Enum.map(fn crawled_url ->
-      create_link(url: crawled_url, published_at: entry.published_at)
+      create_link(url: crawled_url, published_at: entry.published)
     end)
   end
 
@@ -68,7 +64,8 @@ defmodule BlogFeedLinks do
   defp rss_entries(feed_url) do
     feed_url
     |> fetch_page()
-    |> Rss.Parser.parse()
+    |> Feedraptor.parse()
+    |> Map.get(:entries)
   end
 
   defp fetch_page(url, opts \\ [with_agent: false]) do

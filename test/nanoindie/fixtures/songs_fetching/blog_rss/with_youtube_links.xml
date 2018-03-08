@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <rss version="2.0">
    <channel>
-      <entry>
+      <item>
         <link>http://localhost:1234/one</link>
-        <content>
+        <content:encoded>
           <![CDATA[
             <a href="https://www.youtube.com/watch?v=1">link1</a>
             <a href="https://www.youtube.com/embed/2">otherlink</a>
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
-        </content>
-      </entry>
-      <entry>
+        </content:encoded>
+      </item>
+      <item>
         <link>http://localhost:1234/two</link>
-        <content>
+        <content:encoded>
           <![CDATA[
             <a href="https://www.youtube.com/embed/3">link3</a>
             <a href="https://www.youtube.com/watch?v=4">link4</a>
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
-        </content>
-      </entry>
-      <entry>
+        </content:encoded>
+      </item>
+      <item>
         <link>http://localhost:1234/three</link>
         <content:encoded>
           <![CDATA[
@@ -30,6 +30,6 @@
             <a href="https://www.otherlink.com">otherlink</a>
           ]]>
         </content:encoded>
-      </entry>
+      </item>
    </channel>
  </rss>
