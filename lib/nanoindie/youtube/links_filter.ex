@@ -1,4 +1,4 @@
-defmodule Youtube.LinksFilter do
+defmodule Nanoindie.Youtube.LinksFilter do
   alias BlogFeedLinks.Link
 
   def filter(links) do

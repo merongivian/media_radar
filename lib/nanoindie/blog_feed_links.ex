@@ -62,10 +62,12 @@ defmodule BlogFeedLinks do
   end
 
   defp rss_entries(feed_url) do
-    feed_url
-    |> fetch_page()
-    |> Feedraptor.parse()
-    |> Map.get(:entries)
+    entries = feed_url
+              |> fetch_page()
+              |> Feedraptor.parse()
+              |> Map.get(:entries)
+
+    entries || []
   end
 
   defp fetch_page(url, opts \\ [with_agent: false]) do
@@ -85,6 +87,7 @@ defmodule BlogFeedLinks do
     |> Map.get(:body)
   end
 
+  defp crawl_urls(nil), do: []
   defp crawl_urls(content) do
     a_links = content
     |> Floki.find("a")

@@ -1,6 +1,6 @@
 defmodule Nanoindie.BlogsCrawler.Fetcher do
   alias Nanoindie.Repo
-  import Youtube.LinksFilter, only: [filter: 1]
+  import Nanoindie.Youtube.LinksFilter, only: [filter: 1]
   require Ecto.Query
 
   def fetch(blog) do
