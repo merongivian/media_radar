@@ -1,4 +1,4 @@
-defmodule Nanoindie.DataCase do
+defmodule JamRadar.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule Nanoindie.DataCase do
 
   using do
     quote do
-      alias Nanoindie.Repo
+      alias JamRadar.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Nanoindie.DataCase
+      import JamRadar.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Nanoindie.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JamRadar.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Nanoindie.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(JamRadar.Repo, {:shared, self()})
     end
 
     :ok

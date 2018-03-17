@@ -1,3 +1,3 @@
-defmodule NanoindieWeb.LayoutViewTest do
-  use NanoindieWeb.ConnCase, async: true
+defmodule JamRadarWeb.LayoutViewTest do
+  use JamRadarWeb.ConnCase, async: true
 end

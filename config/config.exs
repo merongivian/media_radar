@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :nanoindie,
-  ecto_repos: [Nanoindie.Repo]
+config :jam_radar,
+  ecto_repos: [JamRadar.Repo]
 
 # Configures the endpoint
-config :nanoindie, NanoindieWeb.Endpoint,
+config :jam_radar, JamRadarWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "x5prAjcG68dORz1FooAyDXcHmbbJbHZR1BJ12dhiloHOfD2dNgo2L678fNJfah4r",
-  render_errors: [view: NanoindieWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Nanoindie.PubSub,
+  render_errors: [view: JamRadarWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: JamRadar.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -22,9 +22,9 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :nanoindie, Nanoindie.BlogsCrawler.Scheduler,
+config :jam_radar, JamRadar.BlogsCrawler.Scheduler,
   jobs: [
-    {"*/60 * * * *",   fn -> Nanoindie.BlogsCrawler.crawl() end}
+    {"*/60 * * * *",   fn -> JamRadar.BlogsCrawler.crawl() end}
   ]
 
 # Import environment specific config. This must remain at the bottom

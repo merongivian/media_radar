@@ -1,4 +1,4 @@
-defmodule Nanoindie.Repo.Migrations.CreateSongs do
+defmodule JamRadar.Repo.Migrations.CreateSongs do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Nanoindie.Repo.Migrations.CreatePosts do
+defmodule JamRadar.Repo.Migrations.CreatePosts do
   use Ecto.Migration
 
   def change do

@@ -1,20 +1,12 @@
-# Nanoindie
+# JamRadar
 
-To start your Phoenix server:
+A self-hosted, music blog aggregator
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+# Why?
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+For the last couple of years i've been obsessed with music recommendations. Spotify recommendations
+works great, but it tends to get repeative after some time (because computers). [Hype machine](https://hypem.com/)
+is a great way for getting new music, trough actual people that writes blogs.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This wont be (probably) as complete as [Hype machine](https://hypem.com/), but will enable you to pick your own
+blogs to aggregate.

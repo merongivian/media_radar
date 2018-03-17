@@ -1,4 +1,4 @@
-defmodule NanoindieWeb.ConnCase do
+defmodule JamRadarWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,19 +19,19 @@ defmodule NanoindieWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import NanoindieWeb.Router.Helpers
-      import Nanoindie.Factory
+      import JamRadarWeb.Router.Helpers
+      import JamRadar.Factory
 
       # The default endpoint for testing
-      @endpoint NanoindieWeb.Endpoint
+      @endpoint JamRadarWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Nanoindie.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JamRadar.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Nanoindie.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(JamRadar.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

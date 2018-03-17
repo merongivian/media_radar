@@ -1,4 +1,4 @@
-defmodule NanoindieWeb.PageControllerTest do
-  use NanoindieWeb.ConnCase
+defmodule JamRadarWeb.PageControllerTest do
+  use JamRadarWeb.ConnCase
 
 end

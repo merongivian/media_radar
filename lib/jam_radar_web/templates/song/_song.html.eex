@@ -1,0 +1,18 @@
+<div class="box song-card">
+  <article class="media">
+    <div class="media-left">
+      <i class="fa fa-play-circle fa-2x hvr-pop" data-song-url="<%= @song.media_url %>" data-song-index="<%= @song_counter %>"  data-song-title="<%= @song.title %>"></i>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <%= @song.title %>
+          <% song_blog = @blog || JamRadar.Song.prefered_blog(@song) %>
+          <small class="is-pulled-right">Published <%= Timex.from_now(@song.published_at) %>, posted in <%= link (String.capitalize @song.source), to: @song.media_url %></small>
+          <br>
+          <%= link (String.capitalize song_blog.name), to: blog_song_path(@conn, :index, song_blog.id) %>
+        </p>
+      </div>
+    </div>
+  </article>
+</div>
