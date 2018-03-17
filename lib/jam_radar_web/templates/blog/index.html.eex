@@ -1,4 +1,4 @@
-<h2>Blogs Indexados</h2>
+<h2>Indexed Blogs</h2>
 
 <div class="tile is-ancestor is-multiline columns">
   <%= for blog <- @blogs do %>

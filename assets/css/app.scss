@@ -8,13 +8,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'DJBGetDigital';
-  src: font-url('DJBGetDigital.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 $familyScreenMatrix: "screenMatrix";
 $family-primary: $familyScreenMatrix, $family-sans-serif;
 
@@ -31,10 +24,6 @@ $light: #D0E0F1;
 
 $playerHeight: 90px;
 $containerMargin: 52px;
-
-nav .navbar-brand h1 {
-  font-family: 'DJBGetDigital', $family-sans-serif;
-}
 
 nav {
   position: fixed !important;
