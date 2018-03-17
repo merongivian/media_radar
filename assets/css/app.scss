@@ -11,10 +11,10 @@
 $familyScreenMatrix: "screenMatrix";
 $family-primary: $familyScreenMatrix, $family-sans-serif;
 
-$primary: #5AB9EA;
+$primary: #3B444A;
 //set $primary-invert
 $link: #5680E9;
-$light: #D0E0F1;
+$light: #0F1111;
 //set $link-invert
 
 @import 'bulma/bulma';
@@ -30,6 +30,10 @@ nav {
   right: 0;
   left: 0;
   z-index: 1030;
+
+  h1.title {
+    color: white;
+  }
 }
 
 #main.container {
@@ -55,10 +59,10 @@ nav {
   }
 
   .title {
-    color: #304F4E;
+    color: white;
 
     &:hover {
-      color: $link;
+      color: $info;
     }
   }
 }

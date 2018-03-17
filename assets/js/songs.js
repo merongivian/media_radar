@@ -6,7 +6,23 @@ function hightlightOnlyCurrentSongCard(listPlayIcon) {
     listPlayIcon.closest('.song-card').style["background-color"] = "white";
   });
 
-  listPlayIcon.closest('.song-card').style["background-color"] = "#D0E0F1";
+  var songCard = listPlayIcon.closest('.song-card')
+
+  songCard.style["background-color"] = "gray";
+  songCard.style["color"] = "white";
+
+  // NOTE: :| :(
+  Array.from(songCard.getElementsByTagName('a')).forEach(function(link) {
+    link.style["color"] = "black"
+
+    link.onmouseout = function(){
+      this.style["color"] = "black"
+    }
+
+    link.onmouseover = function(){
+      this.style["color"] = "white"
+    }
+  });
 };
 
 function setPlaying(listPlayIcon) {
