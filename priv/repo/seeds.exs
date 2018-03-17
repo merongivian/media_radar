@@ -139,7 +139,7 @@ pure_crawling_music_blogs = [
   ["sad bastard", "http://www.sad-bastard-music.com/search/label/lanzamientos%20locales", "PE", "https://pbs.twimg.com/profile_images/428757892720644096/lBCrk3S6_400x400.jpeg", "article.post .post-header h2 a"]
 ]
 
-alias JamRadar.{Blog, Repo}
+alias MediaRadar.{Blog, Repo}
 
 insert_or_update_blog = fn(params) ->
   case Repo.get_by(Blog, feed_url: params[:feed_url]) do

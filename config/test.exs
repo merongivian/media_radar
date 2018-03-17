@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :jam_radar, JamRadarWeb.Endpoint,
+config :media_radar, MediaRadarWeb.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,10 +10,10 @@ config :jam_radar, JamRadarWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :jam_radar, JamRadar.Repo,
+config :media_radar, MediaRadar.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "jam_radar_test",
+  database: "media_radar_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -1,4 +1,4 @@
-defmodule JamRadarWeb.ChannelCase do
+defmodule MediaRadarWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule JamRadarWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint JamRadarWeb.Endpoint
+      @endpoint MediaRadarWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JamRadar.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MediaRadar.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(JamRadar.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MediaRadar.Repo, {:shared, self()})
     end
     :ok
   end

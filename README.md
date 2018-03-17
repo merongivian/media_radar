@@ -1,4 +1,4 @@
-# JamRadar
+# MediaRadar
 
 A self-hosted, music blog aggregator
 

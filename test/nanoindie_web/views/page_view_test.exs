@@ -1,3 +1,3 @@
-defmodule JamRadarWeb.PageViewTest do
-  use JamRadarWeb.ConnCase, async: true
+defmodule MediaRadarWeb.PageViewTest do
+  use MediaRadarWeb.ConnCase, async: true
 end

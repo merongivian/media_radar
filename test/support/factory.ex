@@ -1,8 +1,8 @@
-defmodule JamRadar.Factory do
-  use ExMachina.Ecto, repo: JamRadar.Repo
+defmodule MediaRadar.Factory do
+  use ExMachina.Ecto, repo: MediaRadar.Repo
 
   def blog_factory do
-    %JamRadar.Blog{
+    %MediaRadar.Blog{
       feed_url: sequence(:feed_url, &"www.indiehoy.com/feed-#{&1}"),
       name: sequence(:name, &"indiehoy-#{&1}"),
       logo_url: sequence(:logo_url, &"www.indiehoy.com/logo-#{&1}"),
@@ -11,7 +11,7 @@ defmodule JamRadar.Factory do
   end
 
   def song_factory do
-    %JamRadar.Song{
+    %MediaRadar.Song{
       title: "Awesome Song",
       source: "Youtube",
       media_url: sequence(:media_url, &"www.youtube.com/video-#{&1}"),

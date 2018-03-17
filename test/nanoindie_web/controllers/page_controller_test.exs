@@ -1,4 +1,4 @@
-defmodule JamRadarWeb.PageControllerTest do
-  use JamRadarWeb.ConnCase
+defmodule MediaRadarWeb.PageControllerTest do
+  use MediaRadarWeb.ConnCase
 
 end

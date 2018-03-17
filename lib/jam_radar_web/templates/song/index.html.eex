@@ -1,5 +1,0 @@
-<h2>Playlist: <%= if is_nil(@blog), do: "New Tracks", else: @blog.name %></h2>
-
-<%= for {song, i} <- Enum.with_index(@songs) do %>
-  <%= render JamRadarWeb.SongView, "_song.html", song: song, blog: @blog, conn: @conn, song_counter: i %>
-<% end %>

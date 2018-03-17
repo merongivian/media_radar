@@ -1,0 +1,7 @@
+<h2>Indexed Blogs</h2>
+
+<div class="tile is-ancestor is-multiline columns">
+  <%= for blog <- @blogs do %>
+    <%= render MediaRadarWeb.BlogView, "_blog.html", blog: blog, conn: @conn %>
+  <% end %>
+</div

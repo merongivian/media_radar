@@ -1,6 +1,6 @@
-defmodule JamRadar do
+defmodule MediaRadar do
   @moduledoc """
-  JamRadar keeps the contexts that define your domain
+  MediaRadar keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

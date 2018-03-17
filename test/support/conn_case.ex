@@ -1,4 +1,4 @@
-defmodule JamRadarWeb.ConnCase do
+defmodule MediaRadarWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,19 +19,19 @@ defmodule JamRadarWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import JamRadarWeb.Router.Helpers
-      import JamRadar.Factory
+      import MediaRadarWeb.Router.Helpers
+      import MediaRadar.Factory
 
       # The default endpoint for testing
-      @endpoint JamRadarWeb.Endpoint
+      @endpoint MediaRadarWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JamRadar.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MediaRadar.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(JamRadar.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MediaRadar.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

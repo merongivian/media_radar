@@ -1,4 +1,4 @@
-defmodule JamRadar.Repo.Migrations.CreateBlogs do
+defmodule MediaRadar.Repo.Migrations.CreateBlogs do
   use Ecto.Migration
 
   def change do

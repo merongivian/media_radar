@@ -1,4 +1,4 @@
-defmodule JamRadar.DataCase do
+defmodule MediaRadar.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule JamRadar.DataCase do
 
   using do
     quote do
-      alias JamRadar.Repo
+      alias MediaRadar.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import JamRadar.DataCase
+      import MediaRadar.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JamRadar.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MediaRadar.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(JamRadar.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MediaRadar.Repo, {:shared, self()})
     end
 
     :ok

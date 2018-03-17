@@ -1,3 +1,3 @@
-defmodule JamRadarWeb.LayoutViewTest do
-  use JamRadarWeb.ConnCase, async: true
+defmodule MediaRadarWeb.LayoutViewTest do
+  use MediaRadarWeb.ConnCase, async: true
 end

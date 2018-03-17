@@ -1,0 +1,18 @@
+<nav class="navbar is-primary" role="navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <h1 class="title">m_radar</h1>
+    </a>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      <%= link to: "/songs", class: "navbar-item" do %>
+        <strong>Media</strong>
+      <% end %>
+      <%= link to: "/blogs", class: "navbar-item" do %>
+        <strong>Blogs</strong>
+      <% end %>
+    </div>
+  </div>
+</nav>

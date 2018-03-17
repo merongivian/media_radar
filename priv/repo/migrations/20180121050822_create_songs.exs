@@ -1,4 +1,4 @@
-defmodule JamRadar.Repo.Migrations.CreateSongs do
+defmodule MediaRadar.Repo.Migrations.CreateSongs do
   use Ecto.Migration
 
   def change do

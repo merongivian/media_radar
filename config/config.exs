@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :jam_radar,
-  ecto_repos: [JamRadar.Repo]
+config :media_radar,
+  ecto_repos: [MediaRadar.Repo]
 
 # Configures the endpoint
-config :jam_radar, JamRadarWeb.Endpoint,
+config :media_radar, MediaRadarWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "x5prAjcG68dORz1FooAyDXcHmbbJbHZR1BJ12dhiloHOfD2dNgo2L678fNJfah4r",
-  render_errors: [view: JamRadarWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: JamRadar.PubSub,
+  render_errors: [view: MediaRadarWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: MediaRadar.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -22,9 +22,9 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :jam_radar, JamRadar.BlogsCrawler.Scheduler,
+config :media_radar, MediaRadar.BlogsCrawler.Scheduler,
   jobs: [
-    {"*/60 * * * *",   fn -> JamRadar.BlogsCrawler.crawl() end}
+    {"*/60 * * * *",   fn -> MediaRadar.BlogsCrawler.crawl() end}
   ]
 
 # Import environment specific config. This must remain at the bottom
