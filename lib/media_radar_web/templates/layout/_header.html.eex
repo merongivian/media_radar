@@ -7,7 +7,7 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-      <%= link to: "/songs", class: "navbar-item" do %>
+      <%= link to: "/media", class: "navbar-item" do %>
         <strong>Media</strong>
       <% end %>
       <%= link to: "/blogs", class: "navbar-item" do %>

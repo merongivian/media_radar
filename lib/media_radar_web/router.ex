@@ -19,10 +19,10 @@ defmodule MediaRadarWeb.Router do
     get  "/", SongController, :index
 
     resources "/blogs", BlogController, only: ~w(index)a do
-      resources "/songs", SongController, only: ~w(index)a
+      resources "/media", SongController, only: ~w(index)a
     end
 
-    resources "/songs", SongController, only: ~w(index)a
+    resources "/media", SongController, only: ~w(index)a
   end
 
   # Other scopes may use custom stacks.
