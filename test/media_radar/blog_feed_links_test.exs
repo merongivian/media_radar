@@ -6,7 +6,6 @@ defmodule BlogFeedLinksTest do
     feed_url = "http://localhost:#{bypass.port}"
 
     rss_response = File.read! "test/media_radar/fixtures/#{context[:entries_fixture]}"
-
     Bypass.expect_once bypass, "GET", "/", &(Plug.Conn.resp(&1, 200, rss_response))
 
     {:ok, feed_url: feed_url, bypass: bypass}
@@ -91,24 +90,5 @@ defmodule BlogFeedLinksTest do
       assert date_tuple.(Enum.at published_dates, 4) == third_date
       assert date_tuple.(Enum.at published_dates, 5) == third_date
     end
-  end
-
-  @tag entries_fixture: "blog_page_sample.html"
-  test "from_crawling/2", %{feed_url: feed_url, bypass: bypass} do
-    Enum.each ~w(/one /two), fn (entry_path) ->
-      entry_page = File.read! "test/media_radar/fixtures/crawlable_pages/#{entry_path}.html"
-      Bypass.expect_once bypass, "GET", entry_path, &(Plug.Conn.resp(&1, 200, entry_page))
-    end
-
-    urls = feed_url
-           |> BlogFeedLinks.from_crawling(article_link_css: ".media-link")
-           |> Enum.map(fn(link) -> link.url end)
-
-    assert urls == [
-      "http://www.example.com/link1",
-      "http://www.example.com/link2",
-      "http://www.example.com/link3",
-      "http://www.example.com/link4"
-    ]
   end
 end

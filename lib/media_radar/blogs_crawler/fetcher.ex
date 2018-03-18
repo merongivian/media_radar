@@ -1,6 +1,6 @@
 defmodule MediaRadar.BlogsCrawler.Fetcher do
   alias MediaRadar.Repo
-  import MediaRadar.Youtube.LinksFilter, only: [filter: 1]
+  import Youtube.LinksFilter, only: [filter: 1]
   require Ecto.Query
 
   def fetch(blog) do
@@ -11,8 +11,8 @@ defmodule MediaRadar.BlogsCrawler.Fetcher do
     res
   end
 
-  def reject_persisted_songs(song_links, blog) do
-    Enum.filter song_links, fn(song_link) ->
+  def reject_persisted_songs(fetched_song_links, blog) do
+    Enum.filter fetched_song_links, fn(song_link) ->
       blog
       |> Ecto.assoc(:songs)
       |> Ecto.Query.where(media_url: ^song_link.url)
@@ -22,16 +22,6 @@ defmodule MediaRadar.BlogsCrawler.Fetcher do
   end
 
   def song_links(blog) do
-    if is_nil(blog.article_link_css) || String.trim(blog.article_link_css) == "" do
-      rss_song_links(blog)
-    else
-      blog.feed_url
-      |> BlogFeedLinks.from_crawling(article_link_css: blog.article_link_css)
-      |> filter()
-    end
-  end
-
-  def rss_song_links(blog) do
     pure_rss_song_links = blog.feed_url
                           |> BlogFeedLinks.from_rss()
                           |> filter()

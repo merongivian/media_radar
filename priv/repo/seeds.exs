@@ -113,32 +113,6 @@ rss_music_blogs = [
   #http://peruavantgarde.blogspot.com/feeds/posts/default
 ]
 
-pure_crawling_music_blogs = [
-  ["indie rocks", "http://www.indierocks.mx/musica/buenas-nuevas", "MX", "https://pbs.twimg.com/profile_images/489547900041437184/wEKnEbEq_400x400.jpeg", ".noticia-content a"],
-  ["one heap wonder", "http://oneheapwonder.com/video/", "MX", "http://oneheapwonder.com/wp-content/themes/zombie/images/logo_ohw.png", ".post_box a"],
-    #http://oneheapwonder.com/audio/
-  ["sound and vision", "http://soundandvisionmex.com/category/snv-recomienda/", "MX", "http://soundandvisionmex.com/wp-content/uploads/2013/09/logo_verano.jpg", "#category-articles-div h4 a"],
-  ["remezcla", "http://remezcla.com/music/", "MX", "http://c93fea60bb98e121740fc38ff31162a8.s3.amazonaws.com/wp-content/uploads/2017/08/remezcla.jpe", "#musics-listing-div article a"],
-  ["bandalismo", "http://www.bandalismo.net/criticas/", "ES", "http://www.bandalismo.net/wp-content/uploads/2017/09/cropped-cropped-cropped-bandalismologoSHOUT2.png", ".pt-cv-wrapper .pt-cv-ifield h4 a"],
-  ["fantastic mag", "https://www.fantasticmag.es/category/musica/whatshype/", "ES", "https://www.fantasticmag.es/wordpress2/wp-content/archivos/2015/01/logo-fpm-peque.png", ".cb-main h2.cb-post-title a"],
-    #['fantastic mag', 'http://feeds.feedburner.com/fantasticplasticmag/lmyE', 'ES'],
-  ["el quinto beatle", "https://www.elquintobeatle.com/criticas-discos-nacionales/", "ES", "https://www.elquintobeatle.com/wp-content/uploads/2016/08/sticky-logo-3r.png", ".tdc-content-wrap .td-module-thumb a"],
-    #["el quinto beatle", 'https://www.elquintobeatle.com/feed/', 'ES']
-  ["mindies", "http://www.mindies.es/reviews", "ES", "http://www.mindies.es/wp-content/themes/codilight/images/logo_mindies.png", ".main-content.review a"],
-  ["subterranica", "http://www.subterranica.com/search/label/videos", nil, "http://4.bp.blogspot.com/-ySaN4tDV9O4/VJDuimAL0uI/AAAAAAAAD2o/pa1_VroKm8s/s1600/Subterranica%2Blogo%2Bblanco%2Bcompleto.jpg", "h2.entry-title a"],
-  ["zona girante", "http://www.zonagirante.com/videos/", nil, "https://elpartidocriollo.com/sites/default/files/Amigos_Del_Partido_5.png", ".article article h2.title a"],
-  ["rock chapin", "http://rockchapin.org", "GT", "http://www.rockchapin.org/images/diseno/asdf.png", "h1.uk-article-title a"],
-  ["musica chilena", "http://www.musicachilena.cl/v2/videos", "CL", "http://www.musicachilena.cl/v2/wp-content/uploads/2017/08/logo_pink.png", "h3.qt-title a"],
-  ["radionica", "https://www.radionica.rocks/etiquetas/bandas-colombianas", "CO", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Se%C3%B1al_Radionica_logo.svg/1200px-Se%C3%B1al_Radionica_logo.svg.png", ".view-tags h2.title a"], #.actions a.at_titleonimage,
-  ["rockaxis", "http://rockaxis.com.co/colombia/entrevistas/indice", "CO", "https://4.bp.blogspot.com/-ez9ybkhX-zU/Vwl0e3mmN1I/AAAAAAAAEvg/0as9DzCyLbIX13hPp1ql9RyjYNf3ewilA/s640/rockaxis.png", ".field-items h2 a"],
-  ["bang", "http://bangrevista.com/category/Musica", "BO", "http://www.bangrevista.com/images/logo.png", ".row.categorys a"],
-  ["pardelion music", "http://pardelionmusic.tv", "UY", "http://pardelionmusic.tv/wp-content/uploads/2014/07/pmtvlogo.png", "h2.entry-title a"],
-  ["soy rock", "http://revistasoyrock.com.ar/discos/", "AR", "https://pbs.twimg.com/profile_images/908640665734696961/zxxVHI2K_400x400.jpg", ".grid-item a"],
-  ["tercer parlante", "https://elcomercio.pe/blog/tercerparlante", "PE", nil, "article.post-blog h2 a"],
-  ["rock chorao", "https://rockachorao.lamula.pe", "PE", "http://2.blogs.elcomercio.pe/tercerparlante/wp-content/uploads/sites/275/2015/03/rockachorao.jpg", "section.content-post__portada h1 a"],
-  ["sad bastard", "http://www.sad-bastard-music.com/search/label/lanzamientos%20locales", "PE", "https://pbs.twimg.com/profile_images/428757892720644096/lBCrk3S6_400x400.jpeg", "article.post .post-header h2 a"]
-]
-
 alias MediaRadar.{Blog, Repo}
 
 insert_or_update_blog = fn(params) ->
@@ -150,9 +124,7 @@ insert_or_update_blog = fn(params) ->
   |> Repo.insert_or_update!
 end
 
-blogs = rss_music_blogs ++ pure_crawling_music_blogs
-
-Enum.each blogs, fn(blog_data) ->
+Enum.each rss_music_blogs, fn(blog_data) ->
   case blog_data do
     [name, feed_url, country, logo_url] ->
       insert_or_update_blog.(%{name: name, feed_url: feed_url, country: country, logo_url: logo_url})

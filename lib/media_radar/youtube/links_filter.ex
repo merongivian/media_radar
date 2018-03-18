@@ -1,4 +1,4 @@
-defmodule MediaRadar.Youtube.LinksFilter do
+defmodule Youtube.LinksFilter do
   alias BlogFeedLinks.Link
 
   def filter(links) do

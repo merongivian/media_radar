@@ -7,7 +7,6 @@ defmodule MediaRadar.Repo.Migrations.CreateBlogs do
       add :name, :string, null: false
       add :country, :string
       add :logo_url, :string
-      add :article_link_css, :string
 
       timestamps()
     end

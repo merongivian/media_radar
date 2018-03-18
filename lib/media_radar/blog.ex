@@ -5,7 +5,6 @@ defmodule MediaRadar.Blog do
 
 
   schema "blogs" do
-    field :article_link_css, :string
     field :country, :string
     field :feed_url, :string
     field :logo_url, :string
@@ -19,7 +18,7 @@ defmodule MediaRadar.Blog do
   @doc false
   def changeset(%Blog{} = blog, attrs) do
     blog
-    |> cast(attrs, [:feed_url, :name, :country, :logo_url, :article_link_css])
+    |> cast(attrs, [:feed_url, :name, :country, :logo_url])
     |> validate_required([:name, :feed_url])
     |> unique_constraint(:name)
     |> unique_constraint(:feed_url)

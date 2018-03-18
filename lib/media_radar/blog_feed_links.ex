@@ -19,16 +19,6 @@ defmodule BlogFeedLinks do
     |> Enum.flat_map(& create_links(&1, urls_from: :url))
   end
 
-  def from_crawling(feed_url, article_link_css: article_link_css) do
-    feed_url
-    |> fetch_page(with_agent: true)
-    |> Floki.find(article_link_css)
-    |> crawl_urls()
-    |> Enum.map(&(complete_internal_url feed_url, &1))
-    |> Enum.flat_map(&page_urls/1)
-    |> Enum.map(&create_link(url: &1))
-  end
-
   defp create_links(entry, urls_from: :content = urls_from) do
     entry
     |> Map.get(urls_from)
@@ -99,15 +89,5 @@ defmodule BlogFeedLinks do
     |> Floki.attribute("src")
 
     a_links ++ iframe_links
-  end
-
-  defp complete_internal_url(feed_url, url) do
-    if String.starts_with?(url, "/") do
-      feed_url
-      |> URI.merge(url)
-      |> URI.to_string()
-    else
-      url
-    end
   end
 end
